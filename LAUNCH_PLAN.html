@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>24-Hour UGC Sprint — Launch Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#100E0D; --bg-raised:#1B1815; --panel:#211D19;
+    --ink:#F3ECDF; --ink-dim:#B7AC9A; --ink-faint:#7C7365;
+    --rec:#FF3B30; --rec-ink:#100E0D; --ok:#3ED07A; --warn:#E3A83F;
+    --line: rgba(243,236,223,0.14); --line-strong: rgba(243,236,223,0.28);
+    --shadow: 0 20px 60px rgba(0,0,0,0.55);
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Archivo", ui-sans-serif, system-ui, sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--rec); color:var(--rec-ink); }
+  .wrap{ max-width:980px; margin:0 auto; padding:0 24px; }
+  h1,h2,h3{
+    font-family:"Big Shoulders Display", sans-serif; font-weight:800;
+    text-transform:uppercase; letter-spacing:.01em; line-height:.95;
+    margin:0; text-wrap:balance;
+  }
+  .mono{ font-family:"IBM Plex Mono", ui-monospace, monospace; }
+  .num{ font-variant-numeric:tabular-nums; }
+  a{ color:var(--rec); }
+  p{ margin:0; }
+
+  .station-bar{ background:rgba(16,14,13,0.92); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:10; }
+  .station-inner{ max-width:980px; margin:0 auto; padding:14px 24px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+  .station-id{ font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:1.1rem; display:flex; align-items:center; gap:10px; }
+  .station-id .box{ background:var(--rec); color:var(--rec-ink); padding:2px 8px; border-radius:3px; font-size:.9rem; }
+  .status{ display:flex; align-items:center; gap:8px; font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--warn); }
+  .status .dot{ width:8px;height:8px;border-radius:50%; background:var(--warn); }
+
+  header.mast{ padding:64px 0 40px; border-bottom:1px solid var(--line); }
+  header.mast h1{ font-size:clamp(2.4rem,5.5vw,3.8rem); max-width:16ch; }
+  header.mast .sub{ color:var(--ink-dim); font-size:1.1rem; max-width:60ch; margin-top:18px; }
+  .meta-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
+  .chip{ font-family:"IBM Plex Mono",monospace; font-size:12px; padding:6px 11px; border-radius:999px; border:1px solid var(--line-strong); color:var(--ink-dim); }
+  .chip b{ color:var(--ink); }
+
+  section{ padding:52px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .stage{ display:flex; align-items:baseline; gap:14px; margin-bottom:8px; }
+  .stage .n{ font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--ink-faint); border:1px solid var(--line); border-radius:6px; padding:2px 7px; flex:none; }
+  .stage h2{ font-size:1.5rem; }
+  .lede{ color:var(--ink-dim); max-width:66ch; margin-bottom:28px; }
+
+  /* run-sheet items */
+  .runsheet{ display:grid; gap:2px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .item{ background:var(--panel); padding:24px 26px; }
+  .item-head{ display:flex; align-items:flex-start; gap:14px; margin-bottom:12px; }
+  .item-n{ font-family:"Big Shoulders Display",sans-serif; font-size:1.8rem; color:var(--rec); line-height:1; flex:none; }
+  .item-title{ font-family:"Archivo",sans-serif; font-weight:700; font-size:1.08rem; text-transform:none; letter-spacing:0; }
+  .item-why{ color:var(--ink-dim); font-size:.9rem; margin-top:3px; }
+  .item-body{ margin-left:44px; }
+  .item-body p{ color:var(--ink-dim); font-size:.94rem; margin-bottom:10px; }
+  .item-body p:last-child{ margin-bottom:0; }
+  code, pre{ font-family:"IBM Plex Mono",monospace; font-size:.85rem; }
+  pre{
+    background:var(--bg-raised); border:1px solid var(--line);
+    border-radius:8px; padding:14px 16px; overflow-x:auto;
+    color:var(--ink); margin:10px 0;
+  }
+  .status-pill{
+    font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    padding:3px 9px; border-radius:999px; flex:none; margin-left:auto;
+  }
+  .status-pill.blocker{ background:rgba(255,59,48,0.12); color:var(--rec); }
+  .status-pill.quick{ background:rgba(62,208,122,0.12); color:var(--ok); }
+
+  .table-scroll{ overflow-x:auto; border:1px solid var(--line); border-radius:10px; }
+  table{ width:100%; border-collapse:collapse; min-width:560px; }
+  th,td{ text-align:left; padding:14px 16px; border-bottom:1px solid var(--line); vertical-align:top; font-size:.92rem; }
+  th{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); background:var(--bg-raised); }
+  tr:last-child td{ border-bottom:none; }
+  td.hero-row{ background:rgba(255,59,48,0.06); }
+
+  .score-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:2px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin-bottom:20px; }
+  .score-cell{ background:var(--panel); padding:20px; }
+  .score-cell .label{ font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px; }
+  .score-cell .val{ font-family:"Big Shoulders Display",sans-serif; font-size:2.2rem; color:var(--ink); }
+  .score-cell .val.hi{ color:var(--ok); }
+  .score-cell .val.mid{ color:var(--warn); }
+  .score-cell .val.lo{ color:var(--rec); }
+
+  .callout{ border:1px solid var(--line-strong); border-radius:10px; padding:20px 22px; background:var(--panel); margin-top:16px; }
+  .callout h3{ font-size:1rem; text-transform:none; letter-spacing:0; font-family:"Archivo",sans-serif; font-weight:700; margin-bottom:8px; }
+  .callout p{ color:var(--ink-dim); font-size:.92rem; }
+
+  .ladder{ display:grid; gap:2px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin-bottom:20px; }
+  .rung{ background:var(--panel); padding:20px 22px; display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center; }
+  .rung .name{ font-weight:700; }
+  .rung .desc{ color:var(--ink-dim); font-size:.88rem; margin-top:3px; }
+  .rung .price{ font-family:"Big Shoulders Display",sans-serif; font-size:1.6rem; color:var(--rec); white-space:nowrap; }
+
+  .timeline{ border-left:2px solid var(--line); margin-left:6px; }
+  .tl-item{ position:relative; padding:0 0 24px 26px; margin-left:-2px; }
+  .tl-item::before{ content:""; position:absolute; left:-6px; top:3px; width:11px; height:11px; border-radius:50%; background:var(--panel); border:2px solid var(--rec); }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-time{ font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--rec); font-weight:600; letter-spacing:.03em; }
+  .tl-title{ font-weight:700; margin-top:2px; }
+  .tl-body{ color:var(--ink-dim); font-size:.9rem; margin-top:3px; max-width:62ch; }
+
+  footer{ padding:32px 0 60px; text-align:center; color:var(--ink-faint); font-family:"IBM Plex Mono",monospace; font-size:12px; }
+  footer a{ color:var(--ink-faint); }
+</style>
+</head>
+<body>
+
+<div class="station-bar">
+  <div class="station-inner">
+    <div class="station-id"><span class="box">UGC</span> SPRINT · CH 24</div>
+    <div class="status"><span class="dot"></span> PRE-FLIGHT · NOT YET LIVE</div>
+  </div>
+</div>
+
+<header class="mast wrap">
+  <h1>Launch Plan</h1>
+  <p class="sub">Everything left to do before the page goes live, an honest audit of the page as actually built, and a revenue-maximized marketing plan for the launch itself. Nothing here assumes work that hasn't happened.</p>
+  <div class="meta-row">
+    <span class="chip">Blockers <b class="num">2</b></span>
+    <span class="chip">Quick tasks <b class="num">6</b></span>
+    <span class="chip">Est. time to live <b class="num">3-4 hrs</b></span>
+    <span class="chip">Current audit grade <b>C</b></span>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="stage"><h2>Launch checklist</h2></div>
+  <p class="lede">Eight items, in the order to actually do them. Two are real blockers (nothing ships without them); the rest are quick but not optional.</p>
+
+  <div class="runsheet">
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-n mono">1</span>
+        <div>
+          <div class="item-title">Wire a talking-avatar API</div>
+          <div class="item-why">The single real blocker. Nothing in the current pipeline (Prism/generate, UGC_Studio) can produce a talking avatar today.</div>
+        </div>
+        <span class="status-pill blocker">Blocker</span>
+      </div>
+      <div class="item-body">
+        <p>Two real options, priced as of this week:</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-scroll" style="margin:2px 0 0">
+    <table>
+      <thead><tr><th>Option</th><th>Cost</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="hero-row"><b>HeyGen API</b> (recommended to start)</td>
+          <td class="mono num">$5 minimum top-up, pay-as-you-go. Video Agent ≈$0.033/sec (~$2/min). Avatar IV ≈$0.05-0.10/sec (~$3-6/min).</td>
+          <td>No monthly commitment. A 30-45s clip costs roughly $1-3. Cheapest way to test before committing to volume. API credits are separate from any web-plan credits.</td>
+        </tr>
+        <tr>
+          <td>D-ID</td>
+          <td class="mono num">API ≈$5.90/min. Studio plans from $4.70/mo (Lite) with commercial rights included.</td>
+          <td>Studio Lite is a flat monthly option if you'd rather not think in per-second API billing at low volume, but it's a subscription commitment before order #1 exists.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <h3>Do this</h3>
+    <p>Sign up for HeyGen's API (pay-as-you-go, $5 minimum), generate one test clip using your own dogfood script, and check the output quality before touching the page again. Cost of the test: under $3.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="runsheet">
+    <div class="item">
+      <div class="item-head">
+        <span class="item-n mono">2</span>
+        <div>
+          <div class="item-title">Rebuild the GhostwriterAI backend venv</div>
+          <div class="item-why">Confirmed dead as of the last check: <code>nohup: ./venv/bin/uvicorn: No such file or directory</code>. Needed to actually run <code>generate_package()</code> for the script + shot list.</div>
+        </div>
+        <span class="status-pill blocker">Blocker</span>
+      </div>
+      <div class="item-body">
+        <pre>cd ~/Developer/GhostwriterAI/backend
+~/.local/bin/python3.11 -m venv venv
+source venv/bin/activate
+pip install -r requirements-run.txt
+python -c "from app.services.content_engine import generate_package; print('ok')"</pre>
+        <p><code>OPENROUTER_API_KEY</code> is already set in this project's <code>.env</code>. Nothing new to source. If the import fails, check the actual requirements filename in the folder first; it may not be exactly <code>requirements-run.txt</code>.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-n mono">3</span>
+        <div>
+          <div class="item-title">Generate the 4 alt creative variants</div>
+          <div class="item-why">Confirmed working: Prism's fal.ai key + the <code>/generate</code> skill. ~$0.50 total COGS per order.</div>
+        </div>
+        <span class="status-pill quick">Quick</span>
+      </div>
+      <div class="item-body">
+        <pre>python3 ~/.claude/skills/generate/scripts/generate.py \
+  --product "your product name" \
+  --brand-reference-image-url "<public image url>" \
+  --budget 1.00</pre>
+        <p>Run this once per order after the brief comes in. It reads <code>FAL_KEY</code> straight from <code>~/Developer/Prism/.env</code>. Nothing to configure.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-n mono">4</span>
+        <div>
+          <div class="item-title">Create the real Stripe Payment Link</div>
+          <div class="item-why">Both CTA buttons on the landing page are currently <code>href="#"</code> placeholders. This is the single biggest conversion blocker on the page as built. Dead buttons don't sell anything.</div>
+        </div>
+        <span class="status-pill blocker">Blocker</span>
+      </div>
+      <div class="item-body">
+        <p>Dashboard → Payment Links → New → add a $297 one-time product called "24-Hour UGC Sprint" → copy the generated URL.</p>
+        <p>Then replace both instances of <code>href="#order"</code> / <code>href="#"</code> on the "Claim Your Spot" buttons in <code>index.html</code> with that real URL. There are two: one in the sticky order card, one in the sign-off section.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-n mono">5</span>
+        <div>
+          <div class="item-title">Read r/dropship and r/ecommerce yourself, 10 minutes</div>
+          <div class="item-why">The earlier research agent couldn't fetch Reddit directly from its sandbox. This was flagged as unverified, not confirmed. It's the actual Phase 0 demand check, not a nice-to-have.</div>
+        </div>
+        <span class="status-pill quick">Quick</span>
+      </div>
+      <div class="item-body">
+        <p>Check each subreddit's wiki/sidebar for self-promotion rules before posting. Search "UGC ad" and "ad creative cost" sorted by new and by top-this-month. Confirm the pain is actually being talked about, not just assumed.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-n mono">6</span>
+        <div>
+          <div class="item-title">Fill in the real "Tape 001" before/after</div>
+          <div class="item-why">Currently a bracketed placeholder on the page. This is the only trust signal available on day one. It has to be real, not written to sound real.</div>
+        </div>
+        <span class="status-pill quick">Quick</span>
+      </div>
+      <div class="item-body">
+        <p>Run the whole pipeline (steps 2 + 3, plus the avatar clip from step 1) on your own store or a volunteer's. Drop the actual before creative and actual output into the two panels on the landing page. If there's a real number (CTR, CVR, anything), use it: a specific number beats a vague claim.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-n mono">7</span>
+        <div>
+          <div class="item-title">Deploy the page somewhere real</div>
+          <div class="item-why">A local file can't take orders or get indexed. Needs a public URL before the launch post can link anywhere.</div>
+        </div>
+        <span class="status-pill quick">Quick</span>
+      </div>
+      <div class="item-body">
+        <p>Three free options. Pick whichever you already have an account for:</p>
+        <pre># Cloudflare Pages (no build step needed for a static file)
+npx wrangler pages deploy ~/Developer/UGC_Sprint --project-name=ugc-sprint
+
+# GitHub Pages
+cd ~/Developer/UGC_Sprint && git init && git add . && git commit -m "launch"
+gh repo create ugc-sprint --public --source=. --push
+# then enable Pages on the repo in GitHub settings
+
+# Vercel
+vercel deploy ~/Developer/UGC_Sprint --prod</pre>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <span class="item-n mono">8</span>
+        <div>
+          <div class="item-title">Post, staggered: not all four at once</div>
+          <div class="item-why">Cross-posting identical copy to four subreddits simultaneously reads as spam to moderators and to readers who are in more than one.</div>
+        </div>
+        <span class="status-pill quick">Quick</span>
+      </div>
+      <div class="item-body">
+        <p>Space posts by at least a few hours, and adjust the opening line for each community's specific culture rather than pasting the same text four times. See the marketing plan below for sequencing.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="stage"><h2>Market audit: the page as actually built</h2></div>
+  <p class="lede">Scored against the real shipped copy and structure this time, not a hypothetical. Grade improved from the pre-copy pass (D → C). The remaining gap is almost entirely the two blockers above, not the writing.</p>
+
+  <div class="score-grid">
+    <div class="score-cell"><div class="label">Content &amp; Messaging</div><div class="val hi">74</div></div>
+    <div class="score-cell"><div class="label">SEO</div><div class="val lo">35</div></div>
+    <div class="score-cell"><div class="label">Positioning</div><div class="val hi">75</div></div>
+    <div class="score-cell"><div class="label">Conversion</div><div class="val mid">60</div></div>
+    <div class="score-cell"><div class="label">Growth &amp; Trust</div><div class="val lo">22</div></div>
+  </div>
+  <p style="color:var(--ink-dim);font-size:.94rem;margin-bottom:20px">Overall: <b class="mono" style="color:var(--ink)">53.2 → Grade C.</b> Normal for a pre-deployment page with placeholder proof and dead payment buttons. The fixes are already listed above, not new findings.</p>
+
+  <div class="callout">
+    <h3>Why conversion scored only 60, not higher</h3>
+    <p>The structure is strong: sticky order card, guarantee, real scarcity language, FAQ addressing the actual objections (is this really AI, can I run it as a paid ad, why only 5 orders). What's dragging the score down is entirely mechanical: the CTA buttons don't go anywhere yet. Fix item 4 and this score moves on its own.</p>
+  </div>
+  <div class="callout">
+    <h3>Why SEO and Growth &amp; Trust stay low regardless</h3>
+    <p>Both are structurally impossible to fix before deployment and before a first sale exists. Not a writing problem: don't spend more copy effort chasing these two scores this week.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="stage"><h2>Marketing plan: optimized for revenue, not just a launch</h2></div>
+  <p class="lede">The week-1 plan (see <code>~/marketing-plans/ugc-sprint/final_plan.md</code>) covered the minimum to validate. This expands it for revenue: more channels, a real pricing ladder instead of one SKU, and a retention cadence with actual timing.</p>
+
+  <h3 style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:'Archivo',sans-serif;font-weight:700;margin-bottom:14px">Acquisition: beyond the four subreddit posts</h3>
+  <div class="table-scroll" style="margin-bottom:24px">
+    <table>
+      <thead><tr><th>Channel</th><th>Cost</th><th>Why it adds revenue the base plan misses</th></tr></thead>
+      <tbody>
+        <tr><td>Reddit posts (staggered)</td><td class="mono">$0</td><td>Inbound, already planned: the widest but coldest reach.</td></tr>
+        <tr><td>X/Twitter build-in-public thread</td><td class="mono">$0</td><td>The before/after clip as the thread's hook. Compounds: each retweet/quote keeps working after day one, unlike a Reddit post that dies in 48hrs.</td></tr>
+        <tr class="hero-row"><td><b>Facebook Ad Library outbound</b></td><td class="mono">$0</td><td>Search the Ad Library for ecom stores still running static/low-effort ads. That's a warm, specific prospect list, not a cold post waiting for someone to notice it. DM with a specific critique of their current ad, then the offer. Higher conversion than any inbound channel here.</td></tr>
+        <tr><td>Ecom Discord/Slack communities</td><td class="mono">$0</td><td>Direct access to the exact ICP, already gathered in one place. Same value-first framing as Reddit.</td></tr>
+        <tr><td>Post the offer's own clip as a UGC video</td><td class="mono">$0</td><td>Dogfooding as content: "an AI made my ad in 24 hours" is itself a native TikTok/Reels hook. Meta, but it works, and it's the exact proof the page needs anyway.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:'Archivo',sans-serif;font-weight:700;margin-bottom:14px">Revenue ladder: one SKU leaves money on the table</h3>
+  <div class="ladder">
+    <div class="rung"><div><div class="name">Rush upgrade</div><div class="desc">+$50 for 12-hour delivery instead of 24. Same production cost, pure margin, captures urgency-driven willingness to pay.</div></div><div class="price">+$50</div></div>
+    <div class="rung"><div><div class="name">24-Hour UGC Sprint (base)</div><div class="desc">1 talking-avatar video + 4 alt variants. The offer as built.</div></div><div class="price">$297</div></div>
+    <div class="rung"><div><div class="name">3-Pack bundle</div><div class="desc">Three separate product launches, offered at checkout to sellers with more than one product. Real AOV lever, not a discount for its own sake.</div></div><div class="price">$797</div></div>
+    <div class="rung"><div><div class="name">Sprint Pass (retainer)</div><div class="desc">Pitched post-sale once the first hook starts to fatigue, not in the launch copy. Already on the page as a soft mention.</div></div><div class="price">$197/mo</div></div>
+    <div class="rung"><div><div class="name">Agency 10-pack</div><div class="desc">Backlog until ≥10 direct sales prove the pipeline, from the earlier 10x pass. White-labeled to small agencies managing multiple client stores.</div></div><div class="price">$997</div></div>
+  </div>
+
+  <h3 style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:'Archivo',sans-serif;font-weight:700;margin-bottom:14px">Retention cadence: the actual timing</h3>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-time">DAY 0</div><div class="tl-title">Delivery + soft mention</div><div class="tl-body">Assets delivered. One line: "when this starts to fatigue in a week or two, just reply and I'll queue a fresh batch." No pitch, just planting it.</div></div>
+    <div class="tl-item"><div class="tl-time">DAY 10-14</div><div class="tl-title">Fatigue check-in</div><div class="tl-body">"How's the ad performing? Most hooks start fading around now. Want the next batch queued?" This is the actual Sprint Pass conversion moment, not the sales page.</div></div>
+    <div class="tl-item"><div class="tl-time">DAY 25</div><div class="tl-title">Renewal reminder (if converted)</div><div class="tl-body">Simple heads-up before the next $197 cycle, plus an offer to swap in a new angle if the last one underperformed.</div></div>
+  </div>
+
+  <div class="callout" style="margin-top:24px">
+    <h3>Referral, once it's worth building</h3>
+    <p>Not before 5 real customers exist. Then: $50 credit for both the referrer and the person they send, tracked manually at this volume. No infrastructure needed yet.</p>
+  </div>
+</section>
+
+<footer>UGC SPRINT · CH 24 · Full checklist and marketing plan also at <a href="~/Developer/UGC_Sprint/memory.md">memory.md</a> and <a href="~/marketing-plans/ugc-sprint/final_plan.md">final_plan.md</a></footer>
+
+</body>
+</html>

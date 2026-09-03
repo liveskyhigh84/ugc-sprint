@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>24-Hour UGC Sprint — Your ad, shot and delivered in a day</title>
+<meta name="description" content="A real UGC-style ad video plus 4 alt creative variants to test, delivered in 24-48 hours. No creator contracts, no usage-rights hassle, no 2-week wait. $297 flat, first 5 orders today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#100E0D;
+    --bg-raised:#1B1815;
+    --panel:#211D19;
+    --ink:#F3ECDF;
+    --ink-dim:#B7AC9A;
+    --ink-faint:#7C7365;
+    --rec:#FF3B30;
+    --rec-ink:#100E0D;
+    --ok:#3ED07A;
+    --line: rgba(243,236,223,0.14);
+    --line-strong: rgba(243,236,223,0.28);
+    --shadow: 0 20px 60px rgba(0,0,0,0.55);
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Archivo", ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--rec); color:var(--rec-ink); }
+
+  /* film-grain / scanline atmosphere */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:200;
+    opacity:.05;
+    mix-blend-mode:overlay;
+    background-image: repeating-linear-gradient(0deg, #fff 0px, transparent 1px, transparent 2px);
+  }
+  body::after{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:199;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 130%);
+  }
+
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+  .narrow{ max-width:760px; margin:0 auto; padding:0 24px; }
+
+  h1,h2,h3{
+    font-family:"Big Shoulders Display", "Archivo", sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    line-height:.92;
+    margin:0;
+    text-wrap:balance;
+  }
+  .mono{ font-family:"IBM Plex Mono", ui-monospace, monospace; }
+  .num{ font-variant-numeric:tabular-nums; }
+  a{ color:inherit; }
+
+  /* ---------- broadcast header ---------- */
+  .station-bar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(16,14,13,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .station-inner{
+    max-width:1120px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .station-id{
+    font-family:"Big Shoulders Display", sans-serif;
+    font-weight:800; font-size:1.15rem;
+    letter-spacing:.02em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .station-id .box{
+    background:var(--rec); color:var(--rec-ink);
+    padding:2px 8px; border-radius:3px;
+    font-size:.95rem;
+  }
+  .onair{
+    display:flex; align-items:center; gap:8px;
+    font-family:"IBM Plex Mono", monospace; font-size:12px;
+    letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-dim);
+  }
+  .rec-dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--rec);
+    animation: pulse 1.4s ease-in-out infinite;
+    flex:none;
+  }
+  @keyframes pulse{ 0%,100%{ opacity:1 } 50%{ opacity:.25 } }
+  #clock{ color:var(--ink); }
+
+  /* ---------- hero / slate ---------- */
+  .slate{
+    position:relative;
+    padding:96px 0 88px;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(1200px 500px at 15% -10%, rgba(255,59,48,0.10), transparent 60%),
+      var(--bg);
+  }
+  .eyebrow-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--rec);
+    border:1px solid rgba(255,59,48,0.4);
+    background:rgba(255,59,48,0.08);
+    padding:6px 12px; border-radius:999px;
+    margin-bottom:28px;
+    opacity:0; animation: rise .6s ease-out .1s forwards;
+  }
+  .slate h1{
+    font-size:clamp(3rem, 8vw, 6.4rem);
+    max-width:14ch;
+    opacity:0; animation: rise .7s ease-out .2s forwards;
+  }
+  .slate h1 em{
+    font-style:normal;
+    color:var(--rec);
+  }
+  .slate .sub{
+    margin-top:26px;
+    font-size:1.2rem;
+    color:var(--ink-dim);
+    max-width:52ch;
+    opacity:0; animation: rise .7s ease-out .34s forwards;
+  }
+  .cta-row{
+    margin-top:40px;
+    display:flex; flex-wrap:wrap; align-items:center; gap:20px;
+    opacity:0; animation: rise .7s ease-out .48s forwards;
+  }
+  .btn-rec{
+    display:inline-flex; align-items:center; gap:12px;
+    background:var(--rec); color:var(--rec-ink);
+    font-family:"Big Shoulders Display", sans-serif;
+    font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    font-size:1.15rem;
+    padding:18px 30px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    text-decoration:none;
+    box-shadow: 0 10px 30px rgba(255,59,48,0.35);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-rec:hover{ transform:translateY(-2px); box-shadow:0 14px 36px rgba(255,59,48,0.48); }
+  .btn-rec .dot{ width:11px; height:11px; border-radius:50%; background:var(--rec-ink); }
+  .link-ghost{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:13px; letter-spacing:.03em;
+    color:var(--ink-dim);
+    text-decoration:underline;
+    text-underline-offset:4px;
+    text-decoration-color: var(--line-strong);
+  }
+  .link-ghost:hover{ color:var(--ink); }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .eyebrow-tag,.slate h1,.slate .sub,.cta-row{ animation:none; opacity:1; }
+    .rec-dot{ animation:none; }
+  }
+
+  /* ---------- proof strip ---------- */
+  .proof{ padding:56px 0; border-bottom:1px solid var(--line); }
+  .proof-head{
+    display:flex; align-items:baseline; gap:14px; margin-bottom:28px;
+  }
+  .tape-label{
+    font-family:"IBM Plex Mono", monospace; font-size:11.5px;
+    letter-spacing:.1em; text-transform:uppercase;
+    border:1px solid var(--line-strong);
+    padding:3px 8px; border-radius:4px;
+    color:var(--ink-dim);
+  }
+  .proof h2{ font-size:1.6rem; }
+  .split{
+    display:grid; grid-template-columns:1fr 1fr; gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .split > div{ background:var(--panel); padding:26px 24px; }
+  .split .tag{
+    font-family:"IBM Plex Mono", monospace; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase;
+    margin-bottom:10px; display:block;
+  }
+  .split .before .tag{ color:var(--ink-faint); }
+  .split .after .tag{ color:var(--ok); }
+  .split p{ margin:0; color:var(--ink-dim); font-size:.96rem; }
+  .fill-note{
+    margin-top:14px; font-family:"IBM Plex Mono", monospace; font-size:12px;
+    color:var(--ink-faint);
+  }
+  @media (max-width:640px){ .split{ grid-template-columns:1fr; } }
+
+  /* ---------- offer / order form ---------- */
+  .offer{ padding:80px 0; border-bottom:1px solid var(--line); }
+  .offer-grid{
+    display:grid; grid-template-columns:1.1fr .9fr; gap:48px;
+    align-items:start;
+  }
+  @media (max-width:860px){ .offer-grid{ grid-template-columns:1fr; } }
+
+  .offer h2{ font-size:clamp(2rem,4.2vw,2.8rem); margin-bottom:20px; }
+  .move-list{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+  .move-list li{
+    display:grid; grid-template-columns:28px 1fr; gap:14px;
+    padding-bottom:16px; border-bottom:1px dashed var(--line);
+  }
+  .move-list li:last-child{ border-bottom:none; padding-bottom:0; }
+  .move-list .ck{
+    width:22px; height:22px; border-radius:5px;
+    background:rgba(62,208,122,0.14); color:var(--ok);
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:700;
+  }
+  .move-list b{ display:block; margin-bottom:2px; }
+  .move-list span.d{ color:var(--ink-dim); font-size:.94rem; }
+
+  .order-card{
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    border-radius:14px;
+    padding:32px;
+    box-shadow:var(--shadow);
+    position:sticky; top:96px;
+  }
+  .order-card .kicker{
+    font-family:"IBM Plex Mono", monospace; font-size:11.5px;
+    letter-spacing:.1em; text-transform:uppercase;
+    color:var(--rec); margin-bottom:10px;
+  }
+  .price-line{
+    display:flex; align-items:baseline; gap:12px;
+    margin-bottom:6px;
+  }
+  .price{
+    font-family:"Big Shoulders Display", sans-serif;
+    font-size:3.4rem; font-weight:800; line-height:1;
+  }
+  .price-was{
+    font-family:"IBM Plex Mono", monospace;
+    color:var(--ink-faint); text-decoration:line-through; font-size:1rem;
+  }
+  .order-card .caption{ color:var(--ink-dim); font-size:.92rem; margin-bottom:24px; }
+  .spots{
+    display:flex; align-items:center; gap:10px;
+    background:rgba(255,59,48,0.08);
+    border:1px solid rgba(255,59,48,0.35);
+    color:var(--rec);
+    font-family:"IBM Plex Mono", monospace; font-size:12.5px;
+    padding:10px 14px; border-radius:8px;
+    margin-bottom:22px;
+  }
+  .order-card .btn-rec{ width:100%; justify-content:center; margin-bottom:14px; }
+  .guarantee{
+    display:flex; gap:10px; align-items:flex-start;
+    font-size:.86rem; color:var(--ink-dim);
+    padding-top:18px; border-top:1px solid var(--line);
+  }
+  .guarantee .g-ico{ flex:none; color:var(--ok); font-weight:700; }
+
+  /* ---------- spec comparison ---------- */
+  .compare{ padding:72px 0; border-bottom:1px solid var(--line); }
+  .compare h2{ font-size:1.8rem; margin-bottom:8px; }
+  .compare .lede{ color:var(--ink-dim); margin-bottom:30px; max-width:56ch; }
+  .table-scroll{ overflow-x:auto; border:1px solid var(--line); border-radius:10px; }
+  table{ width:100%; border-collapse:collapse; min-width:640px; }
+  th,td{ text-align:left; padding:16px 18px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th{
+    font-family:"IBM Plex Mono", monospace; font-size:11px;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint);
+    background:var(--bg-raised);
+  }
+  tr:last-child td{ border-bottom:none; }
+  td.hero-row{ background:rgba(255,59,48,0.06); }
+  .lede + .table-scroll td, .lede + .table-scroll th{ font-size:.94rem; }
+
+  /* ---------- steps ---------- */
+  .steps{ padding:80px 0; border-bottom:1px solid var(--line); }
+  .steps h2{ font-size:1.8rem; margin-bottom:36px; }
+  .step-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .step-grid > div{ background:var(--panel); padding:28px 24px; }
+  .step-n{
+    font-family:"Big Shoulders Display", sans-serif;
+    font-size:2.8rem; font-weight:800; color:var(--rec); line-height:1;
+    margin-bottom:12px;
+  }
+  .step-grid h3{ font-size:1.05rem; text-transform:none; letter-spacing:0; margin-bottom:8px; font-family:"Archivo",sans-serif; font-weight:700; }
+  .step-grid p{ color:var(--ink-dim); font-size:.92rem; margin:0; }
+  @media (max-width:760px){ .step-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- retainer note ---------- */
+  .sprint-pass{
+    padding:48px 0; border-bottom:1px solid var(--line);
+  }
+  .sprint-pass .box{
+    border:1px dashed var(--line-strong);
+    border-radius:12px;
+    padding:26px 28px;
+    display:flex; justify-content:space-between; align-items:center; gap:20px;
+    flex-wrap:wrap;
+  }
+  .sprint-pass h3{ font-size:1.2rem; text-transform:none; letter-spacing:0; font-family:"Archivo",sans-serif; font-weight:700; margin-bottom:4px; }
+  .sprint-pass p{ margin:0; color:var(--ink-dim); font-size:.92rem; max-width:48ch; }
+  .tag-pass{
+    font-family:"IBM Plex Mono", monospace; font-size:11.5px;
+    color:var(--ink-faint); white-space:nowrap;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq{ padding:80px 0; border-bottom:1px solid var(--line); }
+  .faq h2{ font-size:1.8rem; margin-bottom:30px; }
+  details{
+    border-bottom:1px solid var(--line);
+    padding:18px 0;
+  }
+  summary{
+    cursor:pointer;
+    list-style:none;
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    font-weight:600; font-size:1.02rem;
+  }
+  summary::-webkit-details-marker{ display:none; }
+  summary::after{
+    content:"+";
+    font-family:"IBM Plex Mono", monospace;
+    color:var(--rec); font-size:1.3rem; flex:none;
+    transition: transform .2s ease;
+  }
+  details[open] summary::after{ transform:rotate(45deg); }
+  details p{ margin:12px 0 0; color:var(--ink-dim); max-width:64ch; }
+
+  /* ---------- sign-off ---------- */
+  .signoff{ padding:72px 0 96px; text-align:center; }
+  .signoff h2{ font-size:clamp(2.2rem,5vw,3.4rem); margin-bottom:22px; }
+  .signoff .btn-rec{ margin:0 auto; }
+  .bars{
+    height:6px; margin-top:64px;
+    background: repeating-linear-gradient(90deg,
+      #E4004E 0 8.3%, #E4B300 8.3% 16.6%, #00A3E0 16.6% 24.9%,
+      #2ECC71 24.9% 33.2%, #7B2FF7 33.2% 41.5%, #FF3B30 41.5% 49.8%,
+      #F3ECDF 49.8% 58.1%, #211D19 58.1% 66.4%, #E4004E 66.4% 74.7%,
+      #00A3E0 74.7% 83%, #2ECC71 83% 91.3%, #E4B300 91.3% 100%);
+    opacity:.65;
+  }
+  footer{ padding:28px 0 60px; text-align:center; color:var(--ink-faint); font-family:"IBM Plex Mono",monospace; font-size:12px; }
+</style>
+</head>
+<body>
+
+<div class="station-bar">
+  <div class="station-inner">
+    <div class="station-id"><span class="box">UGC</span> SPRINT · CH 24</div>
+    <div class="onair"><span class="rec-dot"></span> ON AIR — <span id="clock" class="mono num">00:00:00</span></div>
+  </div>
+</div>
+
+<section class="slate">
+  <div class="wrap">
+    <span class="eyebrow-tag"><span class="rec-dot"></span> Now booking — Day 1</span>
+    <h1>Your ad.<br>Shot, edited,<br>delivered.<br><em>In 24 hours.</em></h1>
+    <p class="sub">A real UGC-style ad video plus 4 alternate hooks to test it against. No creator contracts, no usage-rights back-and-forth, no two-week wait. $297 flat, first 5 orders today.</p>
+    <div class="cta-row">
+      <a class="btn-rec" href="#order"><span class="dot"></span> Claim Your Spot — $297</a>
+      <a class="link-ghost" href="#free-tool">or get 3 free hook scripts first →</a>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="wrap">
+    <div class="proof-head">
+      <span class="tape-label">TAPE 001</span>
+      <h2>I ran it on my own store first</h2>
+    </div>
+    <div class="split">
+      <div class="before">
+        <span class="tag">Before</span>
+        <p>[Drop in your actual pre-launch ad: the static product photo or generic creative you were running, and its real CTR/CVR if you have it.]</p>
+      </div>
+      <div class="after">
+        <span class="tag">After</span>
+        <p>[Drop in the UGC Sprint output you generated on your own store: the finished clip and whatever lift you saw. This is the only proof on the page today; make it real, not a placeholder headline.]</p>
+      </div>
+    </div>
+    <p class="fill-note">— Leon, before posting this anywhere. Real numbers beat a testimonial nobody asked for.</p>
+  </div>
+</section>
+
+<section class="offer" id="free-tool">
+  <div class="wrap offer-grid">
+    <div>
+      <h2>What ships in 24-48hrs</h2>
+      <ul class="move-list">
+        <li><span class="ck">✓</span><div><b>1 talking UGC-style ad video</b><span class="d">Shot and voiced start to finish: the asset you actually run as your primary creative.</span></div></li>
+        <li><span class="ck">✓</span><div><b>4 alternate hook variants</b><span class="d">Different angles on the same product: static and short motion, so you're testing five ads on day one, not betting everything on one.</span></div></li>
+        <li><span class="ck">✓</span><div><b>Full usage rights, no contract</b><span class="d">You own every asset outright. No creator approval step, no whitelisting request, no waiting on someone else's schedule.</span></div></li>
+        <li><span class="ck">✓</span><div><b>One free revision</b><span class="d">If the hook's wrong, one round of notes gets it fixed. Not a full re-shoot negotiation.</span></div></li>
+        <li><span class="ck">✓</span><div><b>Money-back if it doesn't beat what you're running</b><span class="d">Full refund, no argument, if it underperforms your current creative.</span></div></li>
+      </ul>
+    </div>
+    <div class="order-card" id="order">
+      <div class="kicker">24-Hour UGC Sprint</div>
+      <div class="price-line"><span class="price">$297</span><span class="price-was mono">vs $500+ agency</span></div>
+      <p class="caption">One-time. 5 finished assets. Delivered in 24-48 hours.</p>
+      <div class="spots"><span class="rec-dot"></span> Only 5 orders today, filmed and edited one at a time, by hand.</div>
+      <a class="btn-rec" href="#"><span class="dot"></span> Claim Your Spot</a>
+      <a class="link-ghost" href="#" style="display:block;text-align:center;margin-bottom:6px;">get the 3 free hook scripts instead</a>
+      <div class="guarantee"><span class="g-ico">✓</span> Doesn't beat your current ad? Full refund, no questions.</div>
+    </div>
+  </div>
+</section>
+
+<section class="compare">
+  <div class="wrap">
+    <h2>Why not just use an agency</h2>
+    <p class="lede">Because the two things that actually cost you money in this category are wait time and rights friction. Both are solved by not routing through a human creator marketplace.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Service</th><th>Price</th><th>Turnaround</th><th>Usage rights</th></tr></thead>
+        <tbody>
+          <tr><td>Billo</td><td class="mono num">$99–150/video, $500–2,500 packages</td><td class="mono num">7–12 business days</td><td>Marketplace creator approval required</td></tr>
+          <tr><td>Arcads</td><td class="mono num">$110–220/mo subscription</td><td class="mono num">No published SLA</td><td>Included, no public pricing page</td></tr>
+          <tr class="hero-row"><td><b>24-Hour UGC Sprint</b></td><td class="mono num"><b>$297 flat</b></td><td class="mono num"><b>24–48 hours</b></td><td><b>Yours outright, no approval step</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="wrap">
+    <h2>How it actually works</h2>
+    <div class="step-grid">
+      <div><div class="step-n mono">01</div><h3>5-minute brief</h3><p>Tell me your product, audience, and the one thing that sells it. No call, no back-and-forth. Just the form.</p></div>
+      <div><div class="step-n mono">02</div><h3>We shoot &amp; cut</h3><p>Your talking-avatar ad plus 4 alt-hook variants get produced within the window. You're not waiting on a creator's calendar.</p></div>
+      <div><div class="step-n mono">03</div><h3>You run it</h3><p>Five finished assets land in your inbox, fully yours to run. Pick the winner by testing, not guessing.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sprint-pass">
+  <div class="wrap">
+    <div class="box">
+      <div>
+        <h3>Winning hooks fade in 1-2 weeks at scale.</h3>
+        <p>When this one starts fatiguing, ask about the Sprint Pass: a fresh batch every month for $197, so you're never stuck running a tired ad.</p>
+      </div>
+      <span class="tag-pass mono">OPTIONAL · AFTER YOUR FIRST ORDER</span>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap narrow" style="padding:0;">
+    <h2>Questions before you order</h2>
+    <details open>
+      <summary>Is this actually AI, or a real person?</summary>
+      <p>The video is produced using licensed AI avatar and voice tools, not a hired actor or a stock creator. That's exactly why it's fast and fully yours to use, with no rights negotiation.</p>
+    </details>
+    <details>
+      <summary>What if I don't like the hook it picks?</summary>
+      <p>One revision round is included. Tell me what's off and I'll fix it: no re-shoot, no extra charge.</p>
+    </details>
+    <details>
+      <summary>Can I actually run this as a paid ad?</summary>
+      <p>Yes. You own the assets outright the moment they're delivered: no whitelisting request, no creator approval step, no usage-rights clock.</p>
+    </details>
+    <details>
+      <summary>Why only 5 orders a day?</summary>
+      <p>Every order is still produced and reviewed by hand right now, one at a time, so quality doesn't slip. That cap goes up once the pipeline is proven. For now it's a real limit, not a marketing trick.</p>
+    </details>
+    <details>
+      <summary>What's the Sprint Pass?</summary>
+      <p>An optional $197/mo continuation once your first hook starts to fatigue: a fresh batch of variants instead of paying $297 again from scratch. Ask after your first order; it's not required.</p>
+    </details>
+  </div>
+</section>
+
+<section class="signoff">
+  <div class="wrap">
+    <h2>That's a wrap.<br>Your turn.</h2>
+    <a class="btn-rec" href="#order"><span class="dot"></span> Claim Your Spot — $297</a>
+  </div>
+  <div class="bars"></div>
+</section>
+
+<footer>UGC SPRINT · CH 24 · END OF TRANSMISSION</footer>
+
+<script>
+  function tick(){
+    var d = new Date();
+    var pad = function(n){ return String(n).padStart(2,"0"); };
+    var el = document.getElementById("clock");
+    if(el) el.textContent = pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds());
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
