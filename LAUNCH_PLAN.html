@@ -154,6 +154,7 @@
       </div>
       <div class="item-body">
         <p>Four candidates were rejected on license or hardware grounds before landing on SadTalker: Wav2Lip (non-commercial license), LongCat and HeyGem (both genuinely OSS but require an NVIDIA GPU this Mac doesn't have), Synthesia/Pippit (no real free tier). See <code>memory.md</code> and <code>research/heygen_alternatives.md</code> for the full trail.</p>
+        <p><b>Production wrapper built and tested: <code>scripts/heygen_clone_server.py</code></b> &mdash; a self-hosted, HeyGen-shaped API (<code>POST /generate</code> &rarr; <code>GET /status</code> &rarr; <code>GET /video</code>) wrapping SadTalker + gTTS/edge-tts, free, no signup. Along the way, found and fixed a real bug in SadTalker's own pinned dependency (<code>imageio==2.19.3</code> crashes mp4 export on Python 3.11+ with a plugin-loader RecursionError &mdash; upgraded to 2.37.4, updated the pin). Full-pipeline smoke test passed: real 4.2s mp4, video+audio in sync, no mocks.</p>
       </div>
     </div>
   </div>
@@ -187,7 +188,7 @@
   </div>
   <div class="callout">
     <h3>Do this</h3>
-    <p>Nothing required to launch. Optional: sign up free at app.jogg.ai/register (no card), drop the key into <code>.env</code> as <code>JOGGAI_API_KEY</code>, and run <code>generate_avatar_test.py</code> to compare against SadTalker before locking in the production path.</p>
+    <p>Nothing required to launch. The wrapper is live: <code>source scripts/heygen_clone_venv/bin/activate && python scripts/heygen_clone_server.py</code>, then <code>POST</code> a script + photo to <code>localhost:8420/generate</code>. Optional: sign up free at app.jogg.ai/register (no card) to compare JoggAI's cloud quality against SadTalker before locking in the production path.</p>
   </div>
 </section>
 
@@ -229,13 +230,13 @@
         <span class="item-n mono">4</span>
         <div>
           <div class="item-title">Create the real Stripe Payment Link</div>
-          <div class="item-why">Both CTA buttons on the landing page are currently <code>href="#"</code> placeholders. This is the single biggest conversion blocker on the page as built. Dead buttons don't sell anything.</div>
+          <div class="item-why">Half done. A real payment link exists and is correct, but it's TEST mode &mdash; the CTA buttons stay <code>href="#"</code> until it's Live. Dead/test buttons don't sell anything.</div>
         </div>
         <span class="status-pill blocker">Blocker</span>
       </div>
       <div class="item-body">
-        <p>Dashboard → Payment Links → New → add a $297 one-time product called "24-Hour UGC Sprint" → copy the generated URL.</p>
-        <p>Then replace both instances of <code>href="#order"</code> / <code>href="#"</code> on the "Claim Your Spot" buttons in <code>index.html</code> with that real URL. There are two: one in the sticky order card, one in the sign-off section.</p>
+        <p>Payment link created: product "24-Hour UGC Sprint", $297.00 USD, one-off &mdash; <code>https://buy.stripe.com/test_8x200kfyudbk2ye1N75Ne00</code> (test mode, do not wire this into the page).</p>
+        <p><b>What's blocking Live mode is entirely on you</b>: the Stripe account ("New business") is unverified. Click "Verify your business" in the dashboard (still open in the browser tab) &mdash; that needs your legal business/personal identity and bank details, which isn't something to hand off to an AI agent. Once verified and switched to Live, the same product needs recreating there (test and live are separate catalogs, this test link won't just start working), then the new Live URL gets wired into both "Claim Your Spot" buttons in <code>index.html</code> (sticky order card + sign-off section).</p>
       </div>
     </div>
 

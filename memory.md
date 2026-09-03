@@ -53,6 +53,41 @@ Also re-verified GhostwriterAI venv still boots (uvicorn starts clean), and re-t
 ## Design direction
 Retro broadcast/analog-TV aesthetic (CRT dark, tally-light red accent, Big Shoulders Display + Archivo + IBM Plex Mono). Deliberate single-theme (no light mode) — a CRT screen doesn't have one. Chosen because it's thematically exact: the product's whole pitch is "looks real, not agency-polished," which a broadcast/camcorder world sells better than another SaaS gradient page.
 
+## Update — 2026-09-02, session 4: self-hosted HeyGen clone + Stripe
+
+Built `scripts/heygen_clone_server.py`: a FastAPI wrapper giving SadTalker + gTTS/edge-tts a
+HeyGen-shaped API (`POST /generate {script, source_image} -> job_id`, poll `/status/{job_id}`,
+fetch `/video/{job_id}`). Same request/response shape as `generate_avatar_test.py`'s JoggAI
+client, so either backend can be swapped in without touching order-fulfillment code. Own venv
+at `scripts/heygen_clone_venv/` (fastapi, uvicorn, gtts, edge-tts) kept separate from
+SadTalker's own torch-heavy venv, which it calls via subprocess. Self-check: `python
+scripts/heygen_clone_server.py --smoke-test` runs one real clip through the full pipeline
+(no mocks) using SadTalker's own `examples/source_image/happy.png`.
+
+**Found and fixed a real bug along the way**: SadTalker's pinned `imageio==2.19.3` has a
+plugin-loader `RecursionError` on Python 3.11+ that crashes mp4 export at the very last step
+(after the slow face-render finishes, wasting the whole run). Upgraded to `imageio>=2.37.4` in
+that venv, confirmed the fix in isolation (raw `imageio.mimsave` test), and updated
+`~/Developer/UGC_Studio/models/SadTalker/requirements.txt`'s pin so a future venv rebuild
+doesn't reintroduce it. That file lives in the home mega-repo, not a project repo — edited in
+place, not committed (per the existing rule about not touching that repo's git history).
+
+**Smoke test PASSED end-to-end** after the fix: real 4.2s mp4, 256x256, mpeg4 video + aac audio,
+both tracks matching duration exactly (voice and lip movement in sync). Output at
+`generate-out/heygen-clone-jobs/smoke-test/2026_09_02_22.09.52.mp4`. 256x256 is SadTalker's
+default `--size`; the 512 safetensor checkpoint is already downloaded if higher resolution is
+ever needed, just pass `--size 512` through to `run_sadtalker()`.
+
+**Stripe**: Leon signed into the Stripe dashboard himself; created a real Payment Link —
+`https://buy.stripe.com/test_8x200kfyudbk2ye1N75Ne00`, product "24-Hour UGC Sprint", $297.00
+USD, one-off — confirming the product/price setup is correct. **This is a TEST-mode link and
+cannot collect real payment.** The account ("New business") is unverified — Stripe still shows
+"Verify your business." Did not touch that flow: it requires Leon's own legal identity and bank
+account details, which is a hard no for me to enter on his behalf. Once he verifies and the
+account can go Live, the same product needs recreating in Live mode (test/live are separate
+catalogs) and that new URL swapped into `index.html`'s two CTA buttons (still `href="#"`,
+unchanged this session).
+
 ## Docs
 - PRD: `~/.claude/prds/ugc-ad-studio-day-launch.prd.md`
 - 10x analysis: `~/.claude/docs/ai/ugc-sprint/10x/session-1.md`
