@@ -12,12 +12,31 @@ Pipeline: `/dare` (found the real bottleneck is distribution, not build time —
 - **UGC_Studio**'s Coqui XTTS license risk only lives in a throwaway Colab notebook it generates, not the running app. The running app's gTTS/edge-tts voice path is already commercially clean. No ElevenLabs key exists anywhere (Leverage Academy actually uses Kokoro).
 - **GhostwriterAI** (`~/Developer/GhostwriterAI/backend`) already has `generate_package()` producing hook variants + a full script + shot list — reusable for the script-generation side. Both GhostwriterAI and UGC_Studio backends had dead venvs as of 2026-09-02 (~30-60min rebuild needed before first fulfillment).
 
+## Update — 2026-09-02, session 2: talking-avatar tool resolved (free/OSS, no HeyGen/D-ID needed)
+
+Leon asked to avoid paid tools entirely. Result: **SadTalker is now installed and confirmed working** at `~/Developer/UGC_Studio/models/SadTalker` (Apache 2.0, verified from its actual LICENSE file; venv built with Python 3.11; core checkpoints downloaded — the two mapping models + both safetensors, ~1.68GB total; enhancer/GFPGAN weights deliberately NOT downloaded, since those carry murkier licensing — never pass `--enhancer` at runtime).
+
+Four more candidates were checked against this same bar and all failed it:
+- **Wav2Lip** (UGC_Studio's original bundled model) — non-commercial research license only. Do not use for paid output.
+- **LongCat AI Video Avatar** (Meituan) — genuinely MIT-licensed, but a 13.6B-param model requiring a 24GB+ NVIDIA GPU. Not viable on a MacBook.
+- **Pippet/Pippit** (CapCut) — not open-source at all, hosted SaaS only. "No watermark for free" claim is false — that's a paid feature ($120-1800/mo plans).
+- **HeyGem** (GuijiAI/DUIX) — workable custom license (free under 100K users/$10M revenue) but hard-requires an NVIDIA GPU, no CPU/Mac path.
+
+**SadTalker is the only verified free/OSS/CPU-capable option.** Real constraint to plan around: CPU-only inference is slow (~4-8 sec/frame on this Mac) — fine for a 15-30s clip (minutes), not for anything longer.
+
+Voice path unchanged and already clean: gTTS/edge-tts (both installed system-wide, Python 3.13 env, not project-specific).
+
+Image generation: Leon's fal.ai account (used by the `/generate` skill) is **locked pending a top-up** — did not add funds myself (that's a real financial action, his call). Fallback used instead: **Pollinations** (`image.pollinations.ai`, free, no API key) — works, produces usable synthetic presenter photos for testing without needing a real person's likeness.
+
 ## Open items before going live
-- [ ] Sign up for HeyGen or D-ID, compare cost/quality, wire the API key — this is the actual missing piece for order #1.
-- [ ] Rebuild GhostwriterAI backend venv (Python 3.11 at `~/.local/bin/python3.11`), confirm `generate_package()` still runs.
-- [ ] Read r/dropship and r/ecommerce directly for 10 minutes (self-promo policy + live demand signal) before posting — the research agent couldn't fetch Reddit directly.
-- [ ] Fill in the real before/after "Tape 001" section on the landing page with an actual dogfooded example — currently a placeholder callout, deliberately not fabricated.
-- [ ] Deploy `index.html` somewhere real (Cloudflare Pages / GitHub Pages / Vercel, all free) and wire the actual Stripe Payment Link into the CTA buttons (currently `href="#"` placeholders — did not create live Stripe products without explicit go-ahead).
+- [x] ~~Sign up for HeyGen or D-ID~~ — replaced with SadTalker (free/OSS), installed and end-to-end tested.
+- [x] Rebuild GhostwriterAI backend venv — done, `generate_package()` confirmed importable.
+- [x] Deploy `index.html` — live at https://liveskyhigh84.github.io/ugc-sprint/ (GitHub Pages, repo: `liveskyhigh84/ugc-sprint`). Not yet linked anywhere — CTA buttons and proof section still placeholders, don't post this URL until items below are done.
+- [x] Read r/dropship, r/ecommerce, r/Entrepreneur — all three explicitly ban this launch's core mechanic (self-promo, DM solicitation, and 2 of 3 ban AI-generated content outright, with "immediate/permanent ban" language). **Do not post the planned launch copy to any of these three.** Real replacements found: r/SideProject (no promotional restrictions) and r/EntrepreneurRideAlong (only generic conduct rules) — use these instead.
+- [ ] Top up the fal.ai account (Prism's key) if the 4 alt static/motion variants are still wanted per order — real money, Leon's decision, not done automatically.
+- [ ] Fund/wire real Stripe Payment Link — dashboard.stripe.com was not logged in on this machine; did not enter credentials. Still a manual step.
+- [ ] Fill in the real before/after "Tape 001" section — still needs Leon's actual product, not fabricated.
+- [ ] IMPORTANT: home directory (`~`) is itself a large git repo containing credentials/PII files. `UGC_Sprint` was deliberately `git init`'d as its own nested repo before any commit/push, specifically to avoid pushing the outer repo's contents to the new public GitHub repo. Keep doing this for any future project folder under `~/Developer/` that isn't already its own repo.
 
 ## Design direction
 Retro broadcast/analog-TV aesthetic (CRT dark, tally-light red accent, Big Shoulders Display + Archivo + IBM Plex Mono). Deliberate single-theme (no light mode) — a CRT screen doesn't have one. Chosen because it's thematically exact: the product's whole pitch is "looks real, not agency-polished," which a broadcast/camcorder world sells better than another SaaS gradient page.
