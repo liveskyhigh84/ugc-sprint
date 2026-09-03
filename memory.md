@@ -28,12 +28,24 @@ Voice path unchanged and already clean: gTTS/edge-tts (both installed system-wid
 
 Image generation: Leon's fal.ai account (used by the `/generate` skill) is **locked pending a top-up** — did not add funds myself (that's a real financial action, his call). Fallback used instead: **Pollinations** (`image.pollinations.ai`, free, no API key) — works, produces usable synthetic presenter photos for testing without needing a real person's likeness.
 
+## Update — 2026-09-02, session 3: reconciled stale checklist, added JoggAI, sharpened copy
+
+Leon pasted an old snapshot of `LAUNCH_PLAN.html` (pre-session-2 state, still showing HeyGen as the blocker) and asked to complete it, watch 2 HeyGen-alternative videos, install the best option, and run a `/teach-me` UGC-mastery pass. Two forks ran in parallel:
+
+- **Avatar research fork**: watched both videos. Video 1 showed HeyGem (already evaluated and rejected in session 2, GPU-only). Video 2 was a "free HeyGen alternatives" roundup — **JoggAI** is the real find: free tier (3 videos, no card), and a native product-URL-to-video endpoint matching this business's exact input shape. Documented as an optional upgrade path alongside the already-working SadTalker, not a replacement — SadTalker still needs zero signup and already works. Test script at `scripts/generate_avatar_test.py`.
+- **UGC mastery fork**: compiled `research/ugc_mastery_notes.md` (hook-rate research, competitor pricing, cold-DM reply-rate data) and applied 2 surgical copy edits to `index.html` (hook-variant bullet, AI-authenticity FAQ answer). Wrote `marketing/outbound_scripts.md` with ready-to-send Reddit/FB-DM/X-thread copy using the r/SideProject + r/EntrepreneurRideAlong finding from session 2.
+
+Also re-verified GhostwriterAI venv still boots (uvicorn starts clean), and re-tested the fal.ai generate pipeline: **confirmed still locked, `HTTP 403 "User is locked. Reason: TOP_UP."`** — same finding as session 2, not resolved, still Leon's money decision.
+
+`LAUNCH_PLAN.html` rewritten to match actual current state (was badly stale — showed 2 blockers that were already resolved, and didn't reflect the Reddit-ban finding at all). Real remaining blockers, now just 2: Stripe Payment Link (item 4) and Tape 001 (item 6, itself waiting on either a fal.ai top-up or accepting SadTalker-only proof). Committed locally (`25f62c5`), not yet pushed — holding push until Leon confirms, since it changes a repo already live at a public URL.
+
 ## Open items before going live
 - [x] ~~Sign up for HeyGen or D-ID~~ — replaced with SadTalker (free/OSS), installed and end-to-end tested.
 - [x] Rebuild GhostwriterAI backend venv — done, `generate_package()` confirmed importable.
 - [x] Deploy `index.html` — live at https://liveskyhigh84.github.io/ugc-sprint/ (GitHub Pages, repo: `liveskyhigh84/ugc-sprint`). Not yet linked anywhere — CTA buttons and proof section still placeholders, don't post this URL until items below are done.
 - [x] Read r/dropship, r/ecommerce, r/Entrepreneur — all three explicitly ban this launch's core mechanic (self-promo, DM solicitation, and 2 of 3 ban AI-generated content outright, with "immediate/permanent ban" language). **Do not post the planned launch copy to any of these three.** Real replacements found: r/SideProject (no promotional restrictions) and r/EntrepreneurRideAlong (only generic conduct rules) — use these instead.
-- [ ] Top up the fal.ai account (Prism's key) if the 4 alt static/motion variants are still wanted per order — real money, Leon's decision, not done automatically.
+- [ ] Top up the fal.ai account (Prism's key) if the 4 alt static/motion variants are still wanted per order — real money, Leon's decision, not done automatically. Confirmed still locked as of session 3.
+- [ ] Optional: sign up free at app.jogg.ai/register (no card) to compare JoggAI's cloud avatar quality against SadTalker's local CPU output before locking in the production path.
 - [ ] Fund/wire real Stripe Payment Link — dashboard.stripe.com was not logged in on this machine; did not enter credentials. Still a manual step.
 - [ ] Fill in the real before/after "Tape 001" section — still needs Leon's actual product, not fabricated.
 - [ ] IMPORTANT: home directory (`~`) is itself a large git repo containing credentials/PII files. `UGC_Sprint` was deliberately `git init`'d as its own nested repo before any commit/push, specifically to avoid pushing the outer repo's contents to the new public GitHub repo. Keep doing this for any future project folder under `~/Developer/` that isn't already its own repo.
