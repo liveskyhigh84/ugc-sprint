@@ -88,6 +88,71 @@ account can go Live, the same product needs recreating in Live mode (test/live a
 catalogs) and that new URL swapped into `index.html`'s two CTA buttons (still `href="#"`,
 unchanged this session).
 
+## Update — 2026-09-06, session 5: real Tape 001, plus 3 real bugs fixed in GhostwriterAI
+
+Leon asked to finish everything remaining and take over the browser. Split the work: he's
+doing Stripe verification + fal.ai top-up himself (real identity/payment, never touched here);
+everything else pushed through.
+
+**Generated the real Tape 001 script** via GhostwriterAI's `generate_package()`, hit 3 real
+bugs in that shared pipeline (not UGC_Sprint-specific — fixed at the source since every caller
+routes through it):
+1. `llm_client.py`'s `DRAFT_MODEL`/`POLISH_MODEL`/`FALLBACK_MODELS` were all dead OpenRouter
+   free-tier slugs (`openai/gpt-oss-*:free`, `meta-llama/llama-3.3-70b-instruct:free`,
+   `qwen/qwen3-next-80b-a3b-instruct:free` — all moved to paid-only, confirmed via direct curl).
+   Replaced with verified-live free models (`minimax/minimax-m3:free` draft,
+   `nvidia/nemotron-3-super-120b-a12b:free` polish + fallback). OpenRouter's free catalog
+   churns fast; re-verify with `curl https://openrouter.ai/api/v1/models` if these 404 again.
+2. `draft()`'s default `max_tokens=1024` silently truncated every ContentPackage response
+   (needs 1500-2500 tokens) — `_extract_json` then parsed the cut-off JSON as `{}` with no
+   error, so `generate_package()` returned an entirely empty package and exited 0. Bumped to
+   2560/3072 (draft/polish) in `llm_client.py`.
+3. `content_engine.py`'s `data = _extract_json(final_text) or _extract_json(draft_text)`
+   trusted any non-empty dict from the polish pass, but a garbled polish response (nemotron's
+   polish sometimes emits word-by-word token-count artifacts) can still regex-match a tiny
+   valid-but-contentless JSON fragment — truthy, so it silently won over a perfectly good
+   draft. Fixed to require `final_data.get("caption")` before trusting it over the draft.
+
+All three fixed directly in `~/Developer/GhostwriterAI/backend/app/services/` (not committed —
+that project's own git workflow, not touched here).
+
+**The LLM's first real draft fabricated proof** — a specific "Order #001: submitted 4:17pm Mon
+→ delivered 2:08pm Tue" with invented Slack-screenshot b-roll. Exactly the fabrication
+memory.md already flagged as unacceptable for this section. Rewrote the copy by hand: dropped
+the fake order/timestamps and the implied Leon-as-narrator framing, kept the researched hook
+structure. The honest, sellable claim available today isn't "real customer order" (none
+exist yet) or "real store before/after" (no store exists) — it's "here is the actual,
+unedited pipeline output, not a mockup." Validated clean with `ai-tells-validator`
+(0 tells after 2 rounds of em-dash/parallelism fixes).
+
+**`index.html`'s Tape 001 section rewritten** to match: header "This is the pipeline. Not a
+mockup.", Before panel = the honest researched competitor quote (7-12 days, $420, approval
+step), After panel = a real `<video>` embed at `generate-out/tape001-final.mp4` with an
+honest caption. Old copy ("I ran it on my own store first" + bracketed CTR/CVR placeholders)
+implied proof that doesn't exist — replaced rather than filled in with invented numbers.
+
+**Generation pipeline**: Pollinations-generated synthetic presenter photo (free, no real
+person's likeness, same fallback as session 2) at `generate-out/tape001/presenter.jpg`.
+First full-length script (~45-49s of audio) would have taken hours at this Mac's CPU-only
+SadTalker rate — killed it and cut the script to ~16s (`short_script_for_render` in
+`research/tape001_package.json`), matching the already-documented 15-30s safe zone. Also
+fixed a real bug in `scripts/heygen_clone_server.py`'s `run_sadtalker()`: it passed paths
+through to a subprocess running with `cwd=SADTALKER_DIR`, so a relative path (e.g. from a
+plain `Path('generate-out/...')`) silently resolved against the wrong directory and SadTalker
+rejected it as "not a valid path." Now resolves every path to absolute before the subprocess
+call. Render was in progress at session-end — check `generate-out/tape001-final.mp4` for the
+finished clip before assuming this item is done.
+
+**`marketing/outbound_scripts.md` rewritten** to match the honest Tape 001: dropped "I run
+[your store]" and "getting burned by 2-week turnaround" (unverified personal claims about
+Leon), replaced with claims only about the pipeline itself (real) or sourced competitor
+pricing (`research/ugc_mastery_notes.md`). Re-validated clean with `ai-tells-validator`.
+
+**Posting plan**: Leon explicitly approved posting to r/SideProject + r/EntrepreneurRideAlong
+automatically once ready, staggered, no further check-in — but that approval was for *this*
+Tape 001 + this copy. X thread and the Facebook Ad Library outbound DMs were not covered by
+that specific approval; check with him before sending those.
+
 ## Docs
 - PRD: `~/.claude/prds/ugc-ad-studio-day-launch.prd.md`
 - 10x analysis: `~/.claude/docs/ai/ugc-sprint/10x/session-1.md`

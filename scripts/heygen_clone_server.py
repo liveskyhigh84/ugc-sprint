@@ -60,11 +60,14 @@ async def synthesize_voice(script: str, out_wav: Path, voice: str) -> None:
 def run_sadtalker(audio_path: Path, source_image: Path, result_dir: Path) -> Path:
     if not SADTALKER_PYTHON.exists():
         raise RuntimeError(f"SadTalker venv not found at {SADTALKER_PYTHON}")
+    # subprocess runs with cwd=SADTALKER_DIR — a relative path here would resolve
+    # against the wrong directory, so every path must be absolute before the call.
+    result_dir.mkdir(parents=True, exist_ok=True)
     cmd = [
         str(SADTALKER_PYTHON), "inference.py",
-        "--driven_audio", str(audio_path),
-        "--source_image", str(source_image),
-        "--result_dir", str(result_dir),
+        "--driven_audio", str(audio_path.resolve()),
+        "--source_image", str(source_image.resolve()),
+        "--result_dir", str(result_dir.resolve()),
         "--still", "--preprocess", "full", "--cpu",
     ]
     proc = subprocess.run(cmd, cwd=SADTALKER_DIR, capture_output=True, text=True)

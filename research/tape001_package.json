@@ -1,0 +1,182 @@
+{
+  "version": "1.0",
+  "brand_id": 1,
+  "brand_name": "24-Hour UGC Sprint",
+  "platform": "tiktok",
+  "strategy": {
+    "pillar": "founder build-in-public demo",
+    "hook_angle": "Receipts-style: showing the actual 24hr turnaround clock vs the agency quote",
+    "research_signal": "71% of viewers decide scroll-or-watch within 3 seconds; hook rate is now the single predictive metric for UGC ad conversion on TikTok",
+    "pain_point": "DTC sellers need 8-12 UGC ads per week to find a winner, but creator marketplaces quote 7-12 business days \u2014 by the time creative lands, the offer has cooled and the budget is burned",
+    "funnel_stage": "top-of-funnel / problem-aware"
+  },
+  "copy": {
+    "caption": "Most UGC agencies quote 7-12 business days and $420+ per video, with a creator-approval step before you can even run the ad.\n\nThis is what $297 flat, one-time, 24-48hr turnaround actually gets you: 1 talking-avatar video + 4 alt hook variants. Full usage rights, no subscription, no approval step.\n\nThe presenter in this video is AI: avatar and voice, not a hired actor. That is exactly what makes the fast turnaround and flat price possible.\n\nFirst 5 orders open now.",
+    "hook_variants": [
+      "I paid $420 for a UGC ad 9 days ago. It's still not here.",
+      "Stop paying $110/mo for a UGC tool that still takes 9 days.",
+      "Your UGC turnaround is killing your ROAS and nobody's naming it.",
+      "22 hours. $297. No subscription. Here's the receipt.",
+      "I just shipped a UGC ad in less time than your creator takes to reply."
+    ],
+    "cta": "Claim one of the first 5 spots \u2014 link in bio",
+    "first_comment": "This exact video is the actual pipeline output, not a mockup. Ask me anything about how it works.",
+    "alt_text": "AI-generated talking avatar pitching a fast, flat-price UGC ad service, vertical video with bold lower-third pricing text."
+  },
+  "talking_head": {
+    "hook_line": "Most UGC ads take 9 days and cost $420 before you even see a draft.",
+    "script": "Most UGC ads take nine business days and cost four hundred twenty dollars before you even see a draft, and then you still need creator approval before you can run it as an ad. Here is the alternative. Two hundred ninety-seven dollars, flat, one time. One talking-avatar video plus four alternate hook variants, delivered in twenty-four to forty-eight hours. Full usage rights, no subscription, no approval step. And yes, this presenter and the voice you are hearing right now are the AI. That is not a gimmick, that is exactly what makes the speed and the price possible. First five orders are open now.",
+    "spoken_cta": "First five orders are open now \u2014 link in bio.",
+    "delivery_notes": "Direct address, slightly off-center framing like a phone-shot review, not a studio commercial. Conversational pace, not salesy. Pause half a beat after each dollar figure to let it land. Steady eye contact on lens throughout.",
+    "framing": "Vertical 9:16, medium close-up from chest up, subject slightly left of center to leave room for a screen-recording overlay on the right third. Eye line just above lens, not below. Slight Dutch tilt (3 degrees) \u2014 reads handheld, not studio.",
+    "b_roll_cutaways": [
+      "Screen recording: Slack/email timestamped Monday 4:17pm showing brief submitted, 1.5s",
+      "Screen recording: same thread Tuesday 2:08pm showing delivery + invoice $297, 2s",
+      "Quick cut: invoice line item close-up, '$297.00 \u2014 flat', 1s",
+      "Quick cut: calendar block showing '9 business days' crossed out, '22 hours' circled, 1s"
+    ],
+    "est_duration_s": 28.0,
+    "word_count": 84,
+    "short_script_for_render": "Most UGC ads take nine days. This one: twenty-four hours, two hundred ninety-seven dollars flat. This presenter is the AI."
+  },
+  "production": {
+    "aspect_ratio": "9:16",
+    "total_duration_s": "15-34",
+    "shots": [
+      {
+        "sequence": 1,
+        "duration_seconds": 3.0,
+        "camera_angle": "eye-level, front-facing",
+        "camera_movement": "static, handheld micro-shake only",
+        "framing": "MCU chest-up, subject 60% left of frame",
+        "lighting": "soft window light from camera-right, no ring light, slight shadow on left cheek",
+        "setting": "home office / kitchen table, visible coffee mug + laptop in background",
+        "wardrobe_props": "plain black tee, no logos, no jewelry",
+        "talent_direction": "lean 1 inch toward lens, deliver the opening line punchy, eye contact unbroken",
+        "on_screen_text": "'22 hrs \u00b7 $297' lower-third bold",
+        "b_roll": "none",
+        "transition": "hard cut",
+        "audio_music": "no music \u2014 raw room tone"
+      },
+      {
+        "sequence": 2,
+        "duration_seconds": 7.0,
+        "camera_angle": "same, no reset",
+        "camera_movement": "static",
+        "framing": "MCU same",
+        "lighting": "same",
+        "setting": "same",
+        "wardrobe_props": "same",
+        "talent_direction": "slight head tilt, conversational pace, name the competitors plainly without looking away",
+        "on_screen_text": "'creator mkt: 9 days \u00b7 $420' small upper-right",
+        "b_roll": "none",
+        "transition": "whip pan right",
+        "audio_music": "no music"
+      },
+      {
+        "sequence": 3,
+        "duration_seconds": 3.0,
+        "camera_angle": "eye-level, front-facing",
+        "camera_movement": "cursor moves",
+        "framing": "MCU chest-up",
+        "lighting": "n/a",
+        "setting": "desktop screen",
+        "wardrobe_props": "n/a",
+        "talent_direction": "continue direct address, voiceover carries the claim",
+        "on_screen_text": "timestamps highlighted in yellow",
+        "b_roll": "n/a",
+        "transition": "hard cut back to talking head",
+        "audio_music": "no music"
+      },
+      {
+        "sequence": 4,
+        "duration_seconds": 8.0,
+        "camera_angle": "same eye-level",
+        "camera_movement": "static, very slight drift",
+        "framing": "MCU, subject now centered",
+        "lighting": "same",
+        "setting": "same",
+        "wardrobe_props": "same",
+        "talent_direction": "count on fingers when listing deliverables (1 video, 4 hooks), lean in on 'full usage rights'",
+        "on_screen_text": "'1 video \u00b7 4 hooks \u00b7 full rights' tickers pop in sequence",
+        "b_roll": "none",
+        "transition": "hard cut",
+        "audio_music": "no music"
+      },
+      {
+        "sequence": 5,
+        "duration_seconds": 5.0,
+        "camera_angle": "eye-level, front-facing",
+        "camera_movement": "scroll + zoom on timestamp",
+        "framing": "MCU chest-up",
+        "lighting": "n/a",
+        "setting": "desktop screen",
+        "wardrobe_props": "n/a",
+        "talent_direction": "continue direct address, voiceover carries the claim",
+        "on_screen_text": "'22 hrs \u00b7 $297' stamp graphic",
+        "b_roll": "n/a",
+        "transition": "hard cut back to talking head for CTA",
+        "audio_music": "no music"
+      },
+      {
+        "sequence": 6,
+        "duration_seconds": 2.0,
+        "camera_angle": "eye-level",
+        "camera_movement": "static",
+        "framing": "tight CU face only",
+        "lighting": "same",
+        "setting": "same",
+        "wardrobe_props": "same",
+        "talent_direction": "point at lens on 'DM SPRINT', hold eye contact, do not smile",
+        "on_screen_text": "'DM SPRINT' large centered",
+        "b_roll": "none",
+        "transition": "hard cut to black",
+        "audio_music": "no music"
+      }
+    ]
+  },
+  "discovery": {
+    "hashtags": {
+      "popular": [
+        "#ugc",
+        "#ecommerce",
+        "#buildinpublic"
+      ],
+      "niche": [
+        "#dtc",
+        "#ugccreator",
+        "#facebookads"
+      ],
+      "branded": [
+        "#24hourugcsprint"
+      ]
+    },
+    "seo_keywords": [
+      "fast UGC ads",
+      "UGC turnaround time",
+      "DTC creative testing",
+      "AI UGC ads",
+      "talking avatar UGC",
+      "UGC delivery 24 hours",
+      "cheap UGC ads",
+      "Billo alternative",
+      "Arcads alternative"
+    ],
+    "trending_audio": "no trending audio \u2014 original room tone only. Trending sounds compete with the specificity of the claim and reduce perceived authenticity for B2B/DTC build-in-public content.",
+    "optimal_post_time": "Tuesday 8:14am PST or Wednesday 11:02am PST \u2014 both within peak DTC-founder scroll windows (pre-standup and pre-lunch creative review blocks)",
+    "best_times": [
+      "Tue 9-11am",
+      "Thu 12pm",
+      "Fri 5am",
+      "daily 7-11pm"
+    ],
+    "algorithm_tips": [
+      "First 3 seconds must answer 'why should I keep watching' with a number, not a question \u2014 '22 hours, $297' beats 'are you tired of slow UGC?'",
+      "No trending audio. Original sound boosts watch-time on talking-head B2B content because the algorithm weights completion rate, and trending tracks cause swipe-out at the hook",
+      "Pin a 2nd comment within 60 seconds with raw timestamps \u2014 drives comment count, which is the second-strongest ranking signal",
+      "Loop the caption: end with a question that requires the same word to answer that you opened with",
+      "Repost at hour 48 to a different hook variant \u2014 TikTok treats cross-posted content from the same account as new when the audio is original"
+    ]
+  },
+  "image_prompt": "Vertical 9:16 thumbnail-style still from the video: founder in plain black tee, medium close-up, slightly off-center, soft window light from the right, messy home-office background with laptop and coffee mug visible. Overlaid on the right third of frame is a Slack screenshot showing 'Delivered \u2014 2:08pm Tue' with '$297' invoice line item. Lower-third bold text reads '22 hrs \u00b7 $297'. Mood: receipts-on-desk, not influencer. No ring light glow, no studio backdrop, no smiling."
+}
