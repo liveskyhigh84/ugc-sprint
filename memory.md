@@ -153,6 +153,29 @@ automatically once ready, staggered, no further check-in — but that approval w
 Tape 001 + this copy. X thread and the Facebook Ad Library outbound DMs were not covered by
 that specific approval; check with him before sending those.
 
+## Update — 2026-09-08, session 6: TikTok Symphony found as a third avatar option
+
+Leon sent a video ("I Found a Secret AI Avatar Generator (Better Than HeyGen)", Malva AI,
+youtu.be/d9FcPjyf4I0) asking if it could be installed for this business. Watched it via the
+`claude-video` skill (captions transcript, 80 frames). It shows TikTok Symphony Creative
+Studio (ByteDance's free AI avatar/video tool) — sign in with Google, no card, **200+
+videos/week (1,000 weekly credits)**.
+
+**Nothing to install — this project's own sibling, UGC_Studio, already documented this exact
+tool** from an earlier Malva AI video (`~/Developer/UGC_Studio/FREE_AI_GENERATORS.md` Section
+5, `build_product_ugc_tab()` in `app.py`). It's a browser tool with no API, so "integration"
+is documentation, same as UGC_Studio did — not code.
+
+Wrote `research/symphony_avatar_option.md` with the exact free path (Voiceover Avatars ->
+paste script -> pick voice -> generate -> download from Library). Recommending it as the
+**primary avatar path going forward**: SadTalker keeps failing background renders in this
+session for unclear environment reasons, and JoggAI is down to 1.5 of its original 2 free
+credits after one render. Symphony's quota is an order of magnitude larger than either.
+
+Did not sign up or sign in — that's Leon's Google account action, same boundary as JoggAI.
+Open question for him: try Symphony for the next real order's avatar clip, given the quota
+headroom?
+
 ## Docs
 - PRD: `~/.claude/prds/ugc-ad-studio-day-launch.prd.md`
 - 10x analysis: `~/.claude/docs/ai/ugc-sprint/10x/session-1.md`

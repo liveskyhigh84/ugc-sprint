@@ -164,14 +164,19 @@
       <thead><tr><th>Option</th><th>Cost</th><th>Notes</th></tr></thead>
       <tbody>
         <tr>
-          <td class="hero-row"><b>SadTalker</b> (in use now)</td>
-          <td class="mono num">$0 — free/OSS, runs locally</td>
-          <td>Installed at <code>~/Developer/UGC_Studio/models/SadTalker</code>. CPU-only inference is slow (~4-8 sec/frame) but fine for a 15-30s clip. Never pass <code>--enhancer</code> — those weights carry murkier licensing and were deliberately not downloaded.</td>
+          <td class="hero-row"><b>TikTok Symphony</b> (recommended primary)</td>
+          <td class="mono num">$0 — free tier, 200+ videos/week (1,000 weekly credits, reset weekly)</td>
+          <td>Sign in with Google, no card. Tools -&gt; Voiceover Avatars -&gt; paste script -&gt; pick voice -&gt; generate -&gt; download from Library. Same tool UGC_Studio already documented (<code>FREE_AI_GENERATORS.md</code> Section 5). Highest free quota of any option here by far. Details: <code>research/symphony_avatar_option.md</code>.</td>
         </tr>
         <tr>
-          <td>JoggAI (optional upgrade)</td>
-          <td class="mono num">Free tier: 3 videos, no card. Paid: $24-29/mo if volume grows.</td>
-          <td>Has a native product-URL-to-video endpoint — same input shape as this whole funnel. Worth a 2-min signup (app.jogg.ai/register) to compare quality against SadTalker. Test script ready at <code>scripts/generate_avatar_test.py</code>.</td>
+          <td>JoggAI (secondary)</td>
+          <td class="mono num">Free tier: 3 videos total, no card. Paid: $24-29/mo if volume grows.</td>
+          <td>Already used for the real Tape 001 clip — 1.5 of 3 free credits left. Has a native product-URL-to-video endpoint. Test script at <code>scripts/generate_avatar_test.py</code>.</td>
+        </tr>
+        <tr>
+          <td>SadTalker (fallback, no signup)</td>
+          <td class="mono num">$0 — free/OSS, runs locally</td>
+          <td>Installed at <code>~/Developer/UGC_Studio/models/SadTalker</code>. CPU-only inference is slow (~4-8 sec/frame) and background renders have been unreliable in this environment past ~4s clips. Never pass <code>--enhancer</code> — those weights carry murkier licensing and were deliberately not downloaded.</td>
         </tr>
         <tr>
           <td>HeyGem (backlog)</td>
@@ -188,7 +193,7 @@
   </div>
   <div class="callout">
     <h3>Do this</h3>
-    <p>Nothing required to launch. The wrapper is live: <code>source scripts/heygen_clone_venv/bin/activate && python scripts/heygen_clone_server.py</code>, then <code>POST</code> a script + photo to <code>localhost:8420/generate</code>. Optional: sign up free at app.jogg.ai/register (no card) to compare JoggAI's cloud quality against SadTalker before locking in the production path.</p>
+    <p>Nothing required to launch. For the next real order's avatar clip: try TikTok Symphony first (sign in with Google, no card, 200+ free videos/week — see <code>research/symphony_avatar_option.md</code>). JoggAI has 1.5 free credits left if needed. SadTalker's local wrapper (<code>python scripts/heygen_clone_server.py</code>, <code>POST</code> to <code>localhost:8420/generate</code>) stays as the no-signup fallback.</p>
   </div>
 </section>
 
