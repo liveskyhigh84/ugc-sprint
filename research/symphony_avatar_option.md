@@ -21,8 +21,8 @@ Tape 001 render. Symphony's quota is an order of magnitude larger and needs no l
 
 ## How to use it (Voiceover Avatars — talking head from script, the exact UGC Sprint shape)
 
-1. Go to ads.tiktok.com/creativeai/symphony/home (or search "TikTok Symphony Creative Studio"),
-   sign in with Google.
+1. Go to ads.tiktok.com/creative/creativestudio/home (verified working 2026-09-08; the earlier
+   ads.tiktok.com/creativeai/symphony/home URL 404s), sign in with Google.
 2. Left sidebar -> Tools -> Voiceover Avatars.
 3. Browse the avatar catalog, pick one, preview auto-plays.
 4. Continue -> paste the script into the Script field.
