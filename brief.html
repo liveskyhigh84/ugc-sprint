@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order Brief — 24-Hour UGC Sprint</title>
+<link rel="canonical" href="https://liveskyhigh84.github.io/ugc-sprint/brief.html">
+<meta name="description" content="3-question brief after checkout — product URL, audience, one thing that sells it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Archivo:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+  :root{--bg:#100E0D;--panel:#211D19;--ink:#F3ECDF;--dim:#B7AC9A;--faint:#7C7365;--line:rgba(243,236,223,.14);--line2:rgba(243,236,223,.28);--rec:#FF3B30;--ok:#3ED07A}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,ui-sans-serif,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  header{padding:22px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .brand{font-family:"Big Shoulders Display",sans-serif;font-weight:800;letter-spacing:.02em}
+  .brand span{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--rec);background:rgba(255,59,48,.12);border:1px solid rgba(255,59,48,.3);padding:3px 8px;border-radius:999px;margin-left:8px}
+  .hero{padding:28px 0 10px}
+  h1{font-family:"Big Shoulders Display",sans-serif;font-size:clamp(26px,4vw,34px);line-height:1;margin:0 0 8px}
+  .lede{color:var(--dim);margin:0;font-size:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0}
+  label{display:block;font-weight:700;font-size:13px;margin:12px 0 6px}
+  label em{font-weight:400;color:var(--dim);font-style:normal}
+  input,textarea{width:100%;background:#0D0F12;color:var(--ink);border:1px solid var(--line2);border-radius:10px;padding:11px 12px;font:inherit;font-size:14px}
+  textarea{min-height:96px;resize:vertical}
+  input:focus,textarea:focus{outline:none;border-color:var(--rec);box-shadow:0 0 0 3px rgba(255,59,48,.18)}
+  .hint{font-size:11.5px;color:var(--faint);margin-top:4px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.row{grid-template-columns:1fr}}
+  .btn{width:100%;margin-top:16px;background:var(--rec);color:#100E0D;border:none;border-radius:999px;padding:13px 16px;font-weight:800;font-family:ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn .dot{width:8px;height:8px;background:#100E0D;border-radius:50%}
+  .alt{margin-top:10px;text-align:center;font-family:ui-monospace,monospace;font-size:11.5px;color:var(--faint)}
+  .alt a{color:var(--dim);text-decoration:underline;text-underline-offset:3px}
+  .ok{background:rgba(62,208,122,.08);border:1px solid rgba(62,208,122,.3);color:var(--ok);border-radius:10px;padding:10px 12px;font-size:13px;display:none;margin-top:12px}
+  footer{padding:22px 0;text-align:center;color:var(--faint);font-family:ui-monospace,monospace;font-size:11px;border-top:1px solid var(--line);margin-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><div class="brand">UGC SPRINT <span>CH 24 · BRIEF</span></div><a href="./" style="font-family:ui-monospace,monospace;font-size:12px;color:var(--dim)">← back to site</a></header>
+  <div class="hero">
+    <h1>3 questions. Then we shoot.</h1>
+    <p class="lede">You just paid → this is the handoff. Fill once, we produce 1 talking-avatar ad + 4 hook variants in 24–48h. One revision included. Email <a href="mailto:jskywalker72@proton.me" style="text-decoration:underline;text-underline-offset:3px;color:var(--dim)">jskywalker72@proton.me</a> if this page fails.</p>
+  </div>
+  <div class="card">
+    <form id="brief" onsubmit="return sendBrief(event)">
+      <label for="email">Your email <em>— same as checkout</em></label>
+      <input id="email" name="email" type="email" required placeholder="you@brand.com" autocomplete="email">
+      <div class="hint">So we match this brief to your Stripe payment.</div>
+
+      <label for="url">Product URL <em>— the one page we sell</em></label>
+      <input id="url" name="url" type="url" required placeholder="https://yourbrand.com/products/hero-product">
+
+      <label for="aud">Audience <em>— who buys this, in one line</em></label>
+      <input id="aud" name="audience" type="text" required maxlength="120" placeholder="e.g. DTC moms 25-44, Shopify skincare">
+
+      <label for="one">One thing that sells it <em>— hook we open on</em></label>
+      <textarea id="one" name="one_thing" required maxlength="280" placeholder="e.g. One wash removes makeup without scrubbing — the demo does the selling"></textarea>
+      <div class="hint">The hook is the only variable most ads ever test. This line becomes the first 3 seconds.</div>
+
+      <div class="row">
+        <div><label for="order">Stripe email or order ref <em>— optional</em></label><input id="order" name="order_ref" type="text" placeholder="order_… or same email"></div>
+        <div><label for="note">Anything we must not say <em>— optional</em></label><input id="note" name="note" type="text" placeholder="claims to avoid"></div>
+      </div>
+
+      <button class="btn" type="submit"><span class="dot"></span> Send brief — we start the clock</button>
+      <div id="ok" class="ok">✓ Brief ready — your email app opened with everything prefilled. Hit Send. We confirm within hours.</div>
+      <div class="alt">No email app? Copy below and send to <a href="mailto:jskywalker72@proton.me">jskywalker72@proton.me</a><br><span style="color:var(--dim)">Subject: UGC Sprint Brief — paste product URL + audience + one thing</span></div>
+    </form>
+  </div>
+  <footer>UGC SPRINT · CH 24 · 24-Hour UGC Sprint · <a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="mailto:jskywalker72@proton.me">jskywalker72@proton.me</a></footer>
+</div>
+<script>
+function sendBrief(e){
+  e.preventDefault();
+  var email=document.getElementById('email').value.trim();
+  var url=document.getElementById('url').value.trim();
+  var aud=document.getElementById('aud').value.trim();
+  var one=document.getElementById('one').value.trim();
+  var order=document.getElementById('order').value.trim();
+  var note=document.getElementById('note').value.trim();
+  if(!email||!url||!aud||!one){ alert('Fill email, product URL, audience, and one thing.'); return false; }
+  var subject='UGC Sprint Brief — '+url;
+  var body=[
+    'Email (checkout): '+email,
+    order? 'Order ref: '+order : null,
+    'Product URL: '+url,
+    'Audience: '+aud,
+    'One thing that sells it: '+one,
+    note? 'Do not say: '+note : null,
+    '',
+    'Sent from https://liveskyhigh84.github.io/ugc-sprint/brief.html'
+  ].filter(Boolean).join('\n');
+  var mailto='mailto:jskywalker72@proton.me?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  document.getElementById('ok').style.display='block';
+  window.location.href=mailto;
+  return false;
+}
+</script>
+</body>
+</html>
