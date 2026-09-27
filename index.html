@@ -18,7 +18,7 @@
     --panel:#211D19;
     --ink:#F3ECDF;
     --ink-dim:#B7AC9A;
-    --ink-faint:#7C7365;
+    --ink-faint:#96897A;
     --rec:#FF3B30;
     --rec-ink:#100E0D;
     --ok:#3ED07A;
@@ -131,8 +131,9 @@
     opacity:0; animation: rise .6s ease-out .1s forwards;
   }
   .slate h1{
-    font-size:clamp(3rem, 8vw, 6.4rem);
+    font-size:clamp(2.15rem, 8vw, 6.4rem);
     max-width:14ch;
+    overflow-wrap:break-word;
     opacity:0; animation: rise .7s ease-out .2s forwards;
   }
   .slate h1 em{
@@ -377,13 +378,16 @@
 </head>
 <body>
 
+<a href="#main" style="position:absolute;left:-999px;top:0;background:var(--rec);color:var(--rec-ink);font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;padding:10px 16px;border-radius:0 0 6px 0;z-index:999;" onfocus="this.style.left='0'" onblur="this.style.left='-999px'">Skip to content</a>
+
 <div class="station-bar">
   <div class="station-inner">
     <div class="station-id"><span class="box">UGC</span> SPRINT · CH 24</div>
-    <div class="onair"><span class="rec-dot"></span> ON AIR — <span id="clock" class="mono num">00:00:00</span></div>
+    <div class="onair" aria-hidden="true"><span class="rec-dot"></span> ON AIR — <span id="clock" class="mono num">00:00:00</span></div>
   </div>
 </div>
 
+<main id="main">
 <section class="slate">
   <div class="wrap">
     <span class="eyebrow-tag"><span class="rec-dot"></span> Now booking — Day 1</span>
@@ -409,7 +413,11 @@
       </div>
       <div class="after">
         <span class="tag">The actual output</span>
-        <video controls playsinline preload="metadata" style="width:100%;border-radius:8px;background:#000" src="generate-out/tape001-final.mp4"></video>
+        <video controls playsinline preload="metadata" autoplay="false" poster="assets/tape001-poster.jpg" style="width:100%;border-radius:8px;background:#000" src="generate-out/tape001-final.mp4"></video>
+        <details class="transcript" style="margin-top:10px;">
+          <summary class="mono" style="cursor:pointer;color:var(--ink-dim);font-size:12px;letter-spacing:.04em;">Read the transcript</summary>
+          <p class="mono" style="color:var(--ink-dim);font-size:13px;margin-top:8px;">"Most UGC ads take nine days. This one: twenty-four hours, two hundred ninety-seven dollars flat. This presenter is the AI."</p>
+        </details>
         <p>Unedited. AI avatar, AI voice, generated end to end by the exact pipeline every order runs through. No hired actor, no stock footage.</p>
       </div>
     </div>
@@ -434,7 +442,6 @@
       <p class="caption">One-time. 5 finished assets. Delivered in 24-48 hours.</p>
       <div class="spots"><span class="rec-dot"></span> Only 5 orders today, filmed and edited one at a time, by hand.</div>
       <a class="btn-rec" href="#"><span class="dot"></span> Claim Your Spot</a>
-      <a class="link-ghost" href="#" style="display:block;text-align:center;margin-bottom:6px;">get the 3 free hook scripts instead</a>
       <div class="guarantee"><span class="g-ico">✓</span> Doesn't beat your current ad? Full refund, no questions.</div>
     </div>
   </div>
@@ -513,6 +520,7 @@
   </div>
   <div class="bars"></div>
 </section>
+</main>
 
 <footer>
   <div style="max-width:720px;margin:0 auto;padding:0 1.5rem;">

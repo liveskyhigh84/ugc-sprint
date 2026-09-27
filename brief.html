@@ -8,7 +8,7 @@
 <meta name="description" content="3-question brief after checkout — product URL, audience, one thing that sells it.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Archivo:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <style>
-  :root{--bg:#100E0D;--panel:#211D19;--ink:#F3ECDF;--dim:#B7AC9A;--faint:#7C7365;--line:rgba(243,236,223,.14);--line2:rgba(243,236,223,.28);--rec:#FF3B30;--ok:#3ED07A}
+  :root{--bg:#100E0D;--panel:#211D19;--ink:#F3ECDF;--dim:#B7AC9A;--faint:#96897A;--line:rgba(243,236,223,.14);--line2:rgba(243,236,223,.28);--rec:#FF3B30;--ok:#3ED07A}
   *{box-sizing:border-box}html{scroll-behavior:smooth}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,ui-sans-serif,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
   a{color:inherit}
@@ -37,8 +37,10 @@
 </style>
 </head>
 <body>
+<a href="#main" style="position:absolute;left:-999px;top:0;background:var(--rec);color:var(--bg);font-family:ui-monospace,monospace;font-size:13px;font-weight:600;padding:10px 16px;border-radius:0 0 6px 0;z-index:999;" onfocus="this.style.left='0'" onblur="this.style.left='-999px'">Skip to content</a>
 <div class="wrap">
   <header><div class="brand">UGC SPRINT <span>CH 24 · BRIEF</span></div><a href="./" style="font-family:ui-monospace,monospace;font-size:12px;color:var(--dim)">← back to site</a></header>
+  <main id="main">
   <div class="hero">
     <h1>3 questions. Then we shoot.</h1>
     <p class="lede">You just paid → this is the handoff. Fill once, we produce 1 talking-avatar ad + 4 hook variants in 24–48h. One revision included. Email <a href="mailto:jskywalker72@proton.me" style="text-decoration:underline;text-underline-offset:3px;color:var(--dim)">jskywalker72@proton.me</a> if this page fails.</p>
@@ -65,10 +67,12 @@
       </div>
 
       <button class="btn" type="submit"><span class="dot"></span> Send brief — we start the clock</button>
-      <div id="ok" class="ok">✓ Brief ready — your email app opened with everything prefilled. Hit Send. We confirm within hours.</div>
-      <div class="alt">No email app? Copy below and send to <a href="mailto:jskywalker72@proton.me">jskywalker72@proton.me</a><br><span style="color:var(--dim)">Subject: UGC Sprint Brief — paste product URL + audience + one thing</span></div>
+      <div id="ok" class="ok">✓ Brief ready. Opening your email app now, prefilled, hit Send when it's up. We confirm within hours.</div>
+      <div class="alt">No email app? Copy the text below and send it to <a href="mailto:jskywalker72@proton.me">jskywalker72@proton.me</a>:</div>
+      <textarea id="fallback-text" readonly aria-label="Copyable brief text for manual email" style="display:none;width:100%;min-height:140px;margin-top:8px;background:#0D0F12;color:var(--ink);border:1px solid var(--line2);border-radius:10px;padding:11px 12px;font:12.5px ui-monospace,monospace;resize:vertical" onclick="this.select()"></textarea>
     </form>
   </div>
+  </main>
   <footer>UGC SPRINT · CH 24 · 24-Hour UGC Sprint · <a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="mailto:jskywalker72@proton.me">jskywalker72@proton.me</a></footer>
 </div>
 <script>
@@ -94,6 +98,9 @@ function sendBrief(e){
   ].filter(Boolean).join('\n');
   var mailto='mailto:jskywalker72@proton.me?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
   document.getElementById('ok').style.display='block';
+  var fb=document.getElementById('fallback-text');
+  fb.value='Subject: '+subject+'\n\n'+body;
+  fb.style.display='block';
   window.location.href=mailto;
   return false;
 }
