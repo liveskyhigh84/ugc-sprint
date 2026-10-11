@@ -1,8 +1,49 @@
-.claude/
-.impeccable/
-generate-out/
-__pycache__/
-scripts/heygen_clone_venv/
+# ---------------------------------------------------------------------------
+# THIS REPO IS PUBLIC AND GITHUB PAGES SERVES EVERY TRACKED FILE.
+# Anything committed here is readable at https://liveskyhigh84.github.io/ugc-sprint/<path>
+# Commit ONLY the files the landing page needs to render.
+# Everything below stays on disk, it is just not published.
+# ---------------------------------------------------------------------------
 
-# graft's local graph cache — regenerable, not committed (run `graft build`).
-/graft/
+# Internal strategy / ops docs — never publish these. They reveal how
+# fulfillment actually works, what it costs, and the outbound playbook
+# (which is also a self-promo ban risk on the subreddits this launch uses).
+memory.md
+LAUNCH_PLAN.html
+REMAINING_TASKS.html
+ugc-launch-checklist.html
+three-video-toolkit.html
+HOU-*
+
+# Superseded docs, kept for audit. STATUS.md is the live source of truth.
+_superseded/
+marketing/
+research/
+growth-os/
+social-content-batch/
+automation-reports/
+graft/
+.agents/
+
+# Tooling / local state — agent + MCP config has no business on a public site
+.claude/
+.gemini/
+.grok/
+.windsurf/
+.skillkit/
+.impeccable/
+__pycache__/
+.opencode/
+.mcp.json
+opencode.json
+AGENTS.md
+GEMINI.md
+.ignore
+
+# The fulfillment pipeline source is internal too.
+scripts/
+
+# Build artifacts. generate-out/tape001-final.mp4 stays tracked on purpose —
+# the landing page embeds it. It is already-tracked, so this ignore rule does
+# not affect it; don't `git add -A` this tree without checking.
+generate-out/

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Next-Steps Playbook — UGC Sprint (7 tasks)</title>
+<style>
+  :root{--bg:#100E0D;--panel:#211D19;--ink:#F3ECDF;--dim:#B7AC9A;--faint:#96897A;--line:rgba(243,236,223,.14);--line2:rgba(243,236,223,.28);--rec:#FF3B30;--ok:#3ED07A;--warn-bg:rgba(255,59,48,.09)}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;max-width:900px;margin:0 auto;padding:2rem 1rem 4rem}
+  h1{color:var(--ink);font-size:1.7em;line-height:1.2}
+  h1 em{font-style:normal;color:var(--faint);font-size:.6em;display:block;font-weight:400;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+  h2{margin-top:3rem;border-bottom:1px solid var(--line);padding-bottom:.5rem;font-size:1.25em}
+  h3{margin-top:1.4rem;font-size:1.02em;color:var(--ink)}
+  h4{margin-bottom:.35rem;font-size:.95em}
+  a{color:#8AB4F8}
+  p,li{color:var(--dim)}
+  strong{color:var(--ink)}
+  code{background:var(--panel);padding:.15rem .4rem;border-radius:4px;font:13px ui-monospace,monospace;color:var(--ink)}
+  pre{background:var(--panel);padding:1rem;border-radius:8px;overflow-x:auto;font:13px/1.55 ui-monospace,monospace;color:var(--ink)}
+  pre code{background:none;padding:0}
+  .step{display:flex;gap:.7rem;margin:1rem 0;align-items:flex-start}
+  .n{flex:0 0 26px;height:26px;background:var(--rec);color:var(--bg);border-radius:50%;text-align:center;line-height:26px;font-weight:800;font-size:13px;margin-top:2px}
+  .step>div{min-width:0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;margin:1rem 0}
+  .warning{background:var(--warn-bg);border-left:4px solid var(--rec);padding:.9rem 1rem;border-radius:0 8px 8px 0;margin:1rem 0;color:var(--ink)}
+  .good{background:rgba(62,208,122,.08);border-left:4px solid var(--ok);padding:.9rem 1rem;border-radius:0 8px 8px 0;margin:1rem 0;color:var(--ink)}
+  .tweet{background:#0D0F12;border:1px solid var(--line2);border-radius:10px;padding:.8rem 1rem;margin:.6rem 0;font-size:14px}
+  .tweet .t-num{font:600 11px ui-monospace,monospace;color:var(--rec);letter-spacing:.08em;text-transform:uppercase}
+  .tweet p{margin:.4rem 0 0;white-space:pre-line;color:var(--ink)}
+  .check{list-style:none;padding-left:0}
+  .check li{padding-left:1.6em;position:relative}
+  .check li:before{content:"☐";position:absolute;left:0;color:var(--rec)}
+  .time-est{font:600 11px ui-monospace,monospace;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;background:rgba(243,236,223,.07);border:1px solid var(--line);padding:3px 9px;border-radius:999px;margin-left:.6rem;vertical-align:middle}
+  .opt{font:600 10px ui-monospace,monospace;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line2);padding:2px 7px;border-radius:999px;vertical-align:middle;margin-left:.4rem}
+  .toc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;margin:1.5rem 0}
+  .toc a{display:block;color:var(--dim);text-decoration:none;padding:.28rem 0;border-bottom:1px solid rgba(243,236,223,.06)}
+  .toc a:last-child{border-bottom:none}
+  .toc a:hover{color:var(--ink)}
+  .toc .tn{display:inline-block;width:1.6em;color:var(--rec);font-family:ui-monospace,monospace;font-size:12px}
+  footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--faint);font:12px ui-monospace,monospace}
+</style>
+</head>
+<body>
+
+<h1><em>24-Hour UGC Sprint · Leon-only manual tasks · 2026-10-11</em>Next-Steps Playbook — the 7 remaining tasks</h1>
+<p>Everything below is doable from this Mac plus your phone. Nothing here can be delegated to the Paperclip agents: each step needs either a logged-in human session (Reddit, X, Instagram, Stripe, Meta) or a publish decision. Total time if you do tasks 1–4: <strong>~45 minutes</strong>. Tasks 5–7 are optional.</p>
+
+<div class="toc">
+  <a href="#t1"><span class="tn">1</span> Push to GitHub <span class="opt">required</span></a>
+  <a href="#t2"><span class="tn">2</span> Reddit — r/SideProject + r/EntrepreneurRideAlong <span class="opt">required</span></a>
+  <a href="#t3"><span class="tn">3</span> Post the X thread from @ugcsprint <span class="opt">required</span></a>
+  <a href="#t4"><span class="tn">4</span> Set Instagram bio link <span class="opt">required · mobile-only</span></a>
+  <a href="#t5"><span class="tn">5</span> Install analytics <span class="opt">optional but recommended</span></a>
+  <a href="#t6"><span class="tn">6</span> Create Sprint Pass $197/mo payment link <span class="opt">optional</span></a>
+  <a href="#t7"><span class="tn">7</span> Set up OpenReply comment→DM <span class="opt">optional · after content is posting</span></a>
+</div>
+
+<!-- ============================================================ 1 -->
+<h2 id="t1">1 · Push to GitHub <span class="time-est">~5 min</span></h2>
+
+<p>The commit <code>8dc3d94</code> (25 files) is already staged locally and the push dry-run succeeds. Until you push, the live page does not show the 4 variant videos and the old internal docs are still readable on the live domain.</p>
+
+<div class="warning"><strong>First, decide the public surface.</strong> The staged commit makes 11 internal files publicly readable at <code>https://liveskyhigh84.github.io/ugc-sprint/&lt;path&gt;</code> (memory.md, the two FB prospect batches, the DM/tweet copy in <code>marketing/</code>, research notes). No credentials in any of them, but they are your burner playbook. Pick <strong>A</strong> or <strong>B</strong> — recommendation: <strong>B</strong>, so competitors read the site and not your pipeline notes. The Paperclip agents read these files from disk (<code>~/Developer/UGC_Sprint/</code>), not from GitHub, so privatizing them breaks nothing.</div>
+
+<h3>Option A — push as-is (everything public)</h3>
+<div class="step"><span class="n">1</span><div><p>Open Terminal:</p><pre><code>cd ~/Developer/UGC_Sprint
+git push origin master</code></pre></div></div>
+<div class="step"><span class="n">2</span><div><p>Wait ~60s for the Pages rebuild, then verify:</p><ul>
+<li><a href="https://liveskyhigh84.github.io/ugc-sprint/">https://liveskyhigh84.github.io/ugc-sprint/</a> — the "TAPE 001 · B–E" section shows 4 playable variants</li>
+<li><a href="https://github.com/liveskyhigh84/ugc-sprint/commits/master">commit status</a> — green check under the latest commit</li>
+<li>Stripe link still works: <a href="https://buy.stripe.com/3cI9AUenj4F5aWvbul5os00">https://buy.stripe.com/3cI9AUenj4F5aWvbul5os00</a></li>
+</ul></div></div>
+
+<h3>Option B — push the site only, keep internal docs private (recommended)</h3>
+<div class="step"><span class="n">1</span><div><p>Remove internal files from the git index (they stay on disk, agents keep working):</p><pre><code>cd ~/Developer/UGC_Sprint
+git rm --cached memory.md push_instructions.html
+git rm --cached growth-os/outbound-engine/fb_ad_library_batch_verified.md
+git rm --cached growth-os/outbound-engine/fb_ad_library_batch_2026-10-10.md
+git rm --cached growth-os/customer-truth/what_the_market_is_telling_us.md
+git rm --cached marketing/ready_to_post/final_copy.md
+git rm --cached marketing/ready_to_post/go_no_go_checklist.md
+git rm --cached marketing/outbound_scripts.md
+git rm --cached marketing/outbound_scripts_clean.md
+git rm --cached research/ugc_mastery_notes.md research/tape001_package.json</code></pre>
+<p class="check-below" style="font-size:13px">Note: <code>push_instructions.html</code> is included so the playbook itself never leaks to the live domain.</p></div></div>
+<div class="step"><span class="n">2</span><div><p>Make sure they stay out of future commits — check <code>.gitignore</code> has entries for each removed path (add them if missing via the editor of your choice), then commit:</p><pre><code>git commit -m "privatize internal docs — keep only landing page + media public"
+git push origin master</code></pre></div></div>
+<div class="step"><span class="n">3</span><div><p>Verify the public surface (should list only site files + media):</p><pre><code>git ls-files</code></pre><p>Then wait 60s and check the live page as in Option A, <em>plus</em> confirm <code>https://liveskyhigh84.github.io/ugc-sprint/memory.md</code> now 404s.</p></div></div>
+
+<div class="good"><strong>Done when:</strong> the live page shows the 4 variants, checkout link loads, and (Option B) every privatized path 404s.</div>
+
+<!-- ============================================================ 2 -->
+<h2 id="t2">2 · Reddit — r/SideProject + r/EntrepreneurRideAlong <span class="time-est">~20 min + replies</span></h2>
+
+<p>Copy is ready. Post it manually — Reddit blocks automated posting from this environment, and re-reading the rules at post time is a hard requirement from the Distribution Lead's spec (<code>growth-os/agents/distribution-lead.md</code>): <em>a rule confirmed on 2026-09-02 is not a rule today</em>.</p>
+
+<div class="warning">Never post to r/dropship, r/ecommerce, or r/Entrepreneur — all three ban this mechanic outright, two with permanent-ban language for AI content. Only the two subs below are cleared.</div>
+
+<h3>Step 0 — re-read the live rules (5 min, do not skip)</h3>
+<div class="step"><span class="n">1</span><div><p>Open each sub in your browser and read <strong>Rules + pinned posts</strong>, specifically checking:</p>
+<ul>
+<li><a href="https://www.reddit.com/r/SideProject/">reddit.com/r/SideProject</a> — look for self-promotion caps, AI-content rules, links-to-external-site rules</li>
+<li><a href="https://www.reddit.com/r/EntrepreneurRideAlong/">reddit.com/r/EntrepreneurRideAlong</a> — look for "no direct selling to the sub", revenue-proof requirements, minimum karma/account-age</li>
+</ul><p>If either sub's current rules contradict this playbook, <strong>stop, don't post, and tell the Paperclip board</strong> — the Distribution Lead logs a rules-change in <code>growth-os/outbound-engine/feedback-log.md</code>.</p></div></div>
+<div class="step"><span class="n">2</span><div><p>Confirm your posting account: a personal Reddit account with some age/karma (a fresh account posting a launch link on day one reads as spam in both subs). Do not post from an account named after the product.</p></div></div>
+
+<h3>Subreddit 1 — r/SideProject</h3>
+<div class="step"><span class="n">3</span><div><p><strong>Title (copy exactly):</strong></p>
+<div class="tweet"><span class="t-num">Title</span><p>I shipped a $297 one-time UGC ad slot that runs in 24-48h. Built the avatar pipeline with SadTalker + gTTS, free tier. AMA / roast my landing page.</p></div>
+<p><strong>Body:</strong> lead with the mechanic, not the price. Use this text:</p>
+<div class="tweet"><p>One avatar video + 4 alternate hooks, owned outright, no creator approval step, flat $297, 14-day refund if it doesn't beat your control in a fair paid test.
+
+For context on why the offer matters: the market right now is Billo ($500–2,500 packages + 7–12 day turnaround), Arcads ($110–220/mo subscription-locked), Icon ($999/mo) — all public pricing pages, I have zero customers, so this is a build-in-public post, not a pitch.
+
+The proof is the pipeline itself — the avatar output on the landing page is the unedited render of the exact path every order will run. Roast the landing page or the pricing, either is useful.</p></div>
+<p><strong>Link:</strong> post the landing page in the body (Reddit auto-formats URLs):<br>
+<code>https://liveskyhigh84.github.io/ugc-sprint/?utm_source=reddit&amp;utm_medium=post&amp;utm_campaign=sidesideproject#hooks</code></p></div></div>
+
+<h3>Subreddit 2 — r/EntrepreneurRideAlong (staggered ≥3 hours later)</h3>
+<div class="step"><span class="n">4</span><div><p>Never post both subs with identical copy at the same time (hard-coded rule in the outbound pipeline). For RideAlong, change the angle to a story/AMA, not a launch pitch. Different title, e.g.: <em>"I turned a one-weekend build (SadTalker + gTTS on a free tier) into a $297 24-hour UGC ad service — zero customers so far, AMA."</em> Rewrite the body in first-person-builder voice; keep every number identical (they're sourced) and still zero-customer-truthful.</p></div></div>
+<div class="step"><span class="n">5</span><div><p><strong>First 48h posture:</strong> reply to every substantive comment in both threads with value, never a hard pitch. If someone asks for proof, link the live page's Tape 001 section — don't paste it inline again.</p></div></div>
+<div class="step"><span class="n">6</span><div><p><strong>Log it</strong> — append to <code>growth-os/outbound-engine/feedback-log.md</code>: date, sub, title, link, and later which replies were qualified.</p></div></div>
+
+<!-- ============================================================ 3 -->
+<h2 id="t3">3 · Post the X thread from @ugcsprint <span class="time-est">~10 min</span></h2>
+
+<div class="warning">Post from <strong>@ugcsprint only</strong>. A prior session was logged into @LeverageAcad and was correctly stopped before posting — that account belongs to the music-business product. If you're not sure which account is live in your browser, check the avatar/name in the top-left compose box first, and log out otherwise.</div>
+
+<h3>Steps</h3>
+<div class="step"><span class="n">1</span><div><p>Log into <a href="https://x.com/ugcsprint">x.com/ugcsprint</a> and verify the account name before composing.</p></div></div>
+<div class="step"><span class="n">2</span><div><p><strong>Timing:</strong> original posts perform in the Tue–Thu 9–11am ET window (per <code>growth-os/content-engine/social_strategy.md</code>). Use the thread feature (the "+" within one compose), not 7 separate tweets, so scrolling chains properly. Media: attach a 5–10s clip of Tape 001 or a variant to Tweet 2.</p></div></div>
+<div class="step"><span class="n">3</span><div><p><strong>The thread, in order (copy exactly):</strong> — this is the verbatim text from <code>marketing/ready_to_post/final_copy.md</code>:</p>
+
+<div class="tweet"><span class="t-num">Tweet 1 · hook</span><p>Built a UGC ad slot in a day.
+
+1 talking-avatar video + 4 alternate hooks. $297 flat. 24-48h. No creator contract.
+
+Thread on what broke along the way ↓</p></div>
+<div class="tweet"><span class="t-num">Tweet 2 · the real asset</span><p>The proof is the pipeline, not a case study.
+
+Tape 001 is the unedited output of the actual render path every order will run: SadTalker (Apache 2.0, local, CPU) + gTTS/edge-tts voice. 4.3MB, 1080x1920.
+
+No hired actor, no stock footage.</p></div>
+<div class="tweet"><span class="t-num">Tweet 3 · why 4 hooks</span><p>The hook is the whole game — 71% of scroll-or-watch decisions happen inside 3 seconds, average decision 1.7s.
+
+Most ads test nothing because they ship one opening. We ship 5 on day one: the main + 4 alternates, each cut as its own short clip.
+
+That's the variable worth testing.</p></div>
+<div class="tweet"><span class="t-num">Tweet 4 · pricing gap</span><p>Nobody in this space sells what we sell:
+
+• Billo — $500-2,500 packages, 7-12 business days, creator approval before you can run it as paid
+• Arcads — $110-220/mo subscription-locked, no one-time option
+• Icon — $999/mo, ~$166/video, premium human-shot
+
+Source: public pricing pages, 2026.</p></div>
+<div class="tweet"><span class="t-num">Tweet 5 · honest limitation</span><p>Zero customers. Here's why that's the reason to be first:
+
+The refund terms are real and written down: beat your current control in a fair paid test in 14 days or full refund. If it were an empty promise the math would be different.
+
+First 5 orders only right now — each one hand-produced.</p></div>
+<div class="tweet"><span class="t-num">Tweet 6 · guarantee</span><p>Doesn't beat your control in a fair paid test? Full refund, 14 days, no argument.
+
+Same terms on the Terms page. The cap is a real limit, not a trick — every order still runs through the pipeline by hand.</p></div>
+<div class="tweet"><span class="t-num">Tweet 7 · soft close</span><p>If you're running a static-only photo ad and have been for 2+ weeks, the opening is probably the thing to fix, not the budget.
+
+Free 3-hook scripts here: https://liveskyhigh84.github.io/ugc-sprint/?utm_source=x&utm_medium=post&utm_campaign=build_thread#hooks
+
+Or the full slot: https://buy.stripe.com/3cI9AUenj4F5aWvbul5os00</p></div></div></div>
+<div class="step"><span class="n">4</span><div><p><strong>After posting:</strong> the 10–15 daily replies into adjacent ecom/ads threads are where small-account growth actually happens (reply windows 8–10am / 12–2pm / 5–7pm ET). Value-only in those replies — never a pitch. The reply cadence is the Social Media Manager routine's job once content is flowing, so you only need to seed day one.</p></div></div>
+<div class="step"><span class="n">5</span><div><p>Log the thread URL + timestamp to <code>growth-os/outbound-engine/feedback-log.md</code>.</p></div></div>
+
+<!-- ============================================================ 4 -->
+<h2 id="t4">4 · Set Instagram bio link <span class="time-est">~5 min · phone only</span></h2>
+
+<p>Meta blocks bio/profile editing from desktop web, so this one happens on your phone, in the app.</p>
+
+<div class="step"><span class="n">1</span><div><p>Open Instagram on your phone, make sure you're on <strong>@ugcsprint</strong> (tap the avatar bottom-right and check the handle top-left; switch accounts if needed).</p></div></div>
+<div class="step"><span class="n">2</span><div><p>Tap <strong>Edit profile</strong> → tap the <strong>Links</strong> field → <strong>Add external link</strong>.</p></div></div>
+<div class="step"><span class="n">3</span><div><p>Paste the UTM-tagged link (per <code>social_strategy.md</code> — use it exactly so the future analytics can attribute bio clicks):</p><pre><code>https://liveskyhigh84.github.io/ugc-sprint/?utm_source=instagram&amp;utm_medium=bio#hooks</code></pre>
+<p>Label (optional, shows on profile): <code>Free UGC hook scripts</code></p></div></div>
+<div class="step"><span class="n">4</span><div><p><strong>Bio line:</strong> one line, zero fabricated proof, price forward. Suggested:</p><pre><code>UGC-style avatar ads, $297 flat, shipped in 24-48h. AI-generated, labelled. Free 3 hook scripts ↓</code></pre></div></div>
+<div class="step"><span class="n">5</span><div><p><strong>AI disclosure:</strong> while you're in settings, check <strong>Edit profile → Page/category</strong> and the account settings for Meta's "AI-generated profile" toggle (this session found it switched off). Tape 001 is a synthetic presenter — TikTok mandates the AIGC label and Meta has a comparable toggle; enabling it proactively costs reach once, getting flagged costs a distribution hold. Decision is yours but the compliance finding in <code>social_strategy.md</code> calls it out as "act on this before posting anything".</p></div></div>
+<div class="step"><span class="n">6</span><div><p><strong>Business account:</strong> confirm the account type is Business or Creator (Settings → Account type and tools). Personal accounts can't connect to OpenReply later, and Business unlocks insights you'll want.</p></div></div>
+
+<div class="good"><strong>Done when:</strong> tapping the link from another device lands on the page scrolled to the hooks section.</div>
+
+<!-- ============================================================ 5 -->
+<h2 id="t5">5 · Install analytics <span class="time-est">~15 min</span> <span class="opt">optional · strongly recommended</span></h2>
+
+<p>Right now UTMs land nowhere; the only real attribution is Stripe's checkout referrer. Until analytics exists, don't trust any "the Reddit post drove traffic" hunch. Two options, pick one:</p>
+
+<h3>Option A — Plausible (recommended: privacy-friendly, no cookie banner, 1-minute install, $9/mo after trial)</h3>
+<div class="step"><span class="n">1</span><div>Sign up at <a href="https://plausible.io/register">plausible.io/register</a> → add site domain <code>liveskyhigh84.github.io/ugc-sprint</code> (path-scoped sites: enter <code>liveskyhigh84.github.io/ugc-sprint</code>; Plausible treats it as its own site).</div></div>
+<div class="step"><span class="n">2</span><div>Tell me "install Plausible with ID <code>plausible_id</code>" afterwards and I'll add the one-line script tag to the head of <code>index.html</code>, <code>brief.html</code>, <code>privacy.html</code> and <code>terms.html</code> and commit — or paste it yourself just before <code>&lt;/head&gt;</code>: <code>&lt;script defer data-domain="liveskyhigh84.github.io/ugc-sprint" src="https://plausible.io/js/script.js"&gt;&lt;/script&gt;</code></div></div>
+
+<h3>Option B — Google Analytics 4 (free, heavier, you'll accept cookie notices by implication)</h3>
+<div class="step"><span class="n">1</span><div>Create a GA4 property at <a href="https://analytics.google.com/">analytics.google.com</a> → Admin → Data streams → Web → enter the live URL. Copy the Measurement ID (<code>G-XXXXXXXXXX</code>).</div></div>
+<div class="step"><span class="n">2</span><div>Paste this just before <code>&lt;/head&gt;</code> on all four HTML pages (swap the ID): <code>&lt;script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"&gt;&lt;/script&gt;&lt;script&gt;window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');&lt;/script&gt;</code> — or tell me the ID and I'll wire all four pages and commit.</div></div>
+<div class="step"><span class="n">3</span><div>In GA4, add a custom report dimension on <code>utm_source</code> (Admin → Custom definitions) so channel attribution is one click, not a filter dance.</div></div>
+
+<div class="good"><strong>Done when:</strong> you visit the live page yourself (incognito, tag appended) and see a real-time hit with <code>utm_source=</code> set. From then on, the UTM scheme in <code>social_strategy.md</code> becomes measurable and the agents' channel attribution logs mean something.</div>
+
+<!-- ============================================================ 6 -->
+<h2 id="t6">6 · Create Sprint Pass $197/mo payment link <span class="time-est">~10 min</span> <span class="opt">optional</span></h2>
+
+<p>Dashboard-only work in <a href="https://dashboard.stripe.com">dashboard.stripe.com</a>. This is the post-delivery upsell: fresh hook variants month 2+ for customers whose hooks fatigue (days 10–14). It is not offered at checkout.</p>
+<div class="step"><span class="n">1</span><div>Products → <strong>Add product</strong> → Name: <code>Sprint Pass — Monthly Hook Refresh</code>, description: <code>4 fresh UGC hook variants per month, delivered within 48h of request, same pipeline as the original sprint.</code> Price: <code>$197</code>, <strong>Recurring: monthly</strong>.</div></div>
+<div class="step"><span class="n">2</span><div>Payment links → <strong>New payment link</strong> → select that product → copy the URL (<code>https://buy.stripe.com/…</code>).</div></div>
+<div class="step"><span class="n">3</span><div>Test the link in a private window, then <strong>keep it out of the landing page for now</strong> — per the growth-loop brief, the Sprint Pass pitches post-delivery, not at first purchase. Put the URL in <code>growth-os/growth-loop-brief.md</code> and let the QC/Delivery agent reference it in the day-10 follow-up it drafts for you.</div></div>
+<div class="step"><span class="n">4</span><div>Optional second CTA on <code>index.html</code> is already wired in <code>push_instructions.html</code> — that's an existing prepared section you can skip if you take step 3's advice.</div></div>
+
+<!-- ============================================================ 7 -->
+<h2 id="t7">7 · Set up OpenReply comment→DM <span class="time-est">~3–4 h, plus a ~1-week Meta App Review wait</span> <span class="opt">optional · sequence after content</span></h2>
+
+<p><strong>Do not start this before there is content generating comments.</strong> Zero posts → zero comments → zero value from a comment-watcher. The correct order is: content live (tasks 2–4 + the agents' routines) → comments appear → OpenReply catches them. Full setup runbook with every gotcha: <code>growth-os/content-engine/openreply-runbook.md</code> (local file; also copied to Desktop earlier). Summary:</p>
+<div class="step"><span class="n">1</span><div><strong>Prerequisites:</strong> Instagram account is Business/Creator (task 4, step 6), a Resend account with verified sender domain (free), Railway (Hobby plan ~$5/mo for Postgres + Redis + worker), Vercel (free web-app tier). Do Railway first.</div></div>
+<div class="step"><span class="n">2</span><div><strong>Deploy worker → migrate → web app:</strong> Railway: New project → PostgreSQL → Redis → OpenReply worker fork (build <code>npm run db:generate</code>, start <code>npm run worker</code>). Migrate once from your machine against the <strong>public</strong> Postgres URL. Vercel: import the fork, use Railway's <strong>public</strong> URLs (an internal <code>*.railway.internal</code> URL hanging from Vercel is the #1 setup failure per the runbook).</div></div>
+<div class="step"><span class="n">3</span><div><strong>Shared secrets:</strong> <code>ENCRYPTION_KEY</code> = <code>openssl rand -hex 32</code>, <em>identical value on web app and worker</em> (skew = every send silently fails to decrypt). Set <code>ALLOWED_EMAILS</code> to your email so your instance isn't open-signup.</div></div>
+<div class="step"><span class="n">4</span><div><strong>Meta app (the hard part):</strong> developers.facebook.com → Business app → use-case "Manage messaging and content on Instagram" — not the Marketing API, not the Facebook-Login variant. Collect <code>INSTAGRAM_APP_ID</code> + <code>INSTAGRAM_APP_SECRET</code> (Instagram product page, not the Facebook IDs) and <code>FACEBOOK_APP_SECRET</code>. Register OAuth redirect as <code>https://&lt;your-app&gt;.vercel.app/api/instagram/callback</code> — no trailing slash. Add @ugcsprint as an Instagram tester <em>and accept the invite on the Instagram side</em> (Settings → Apps and websites → Tester invites) — the step people miss.</div></div>
+<div class="step"><span class="n">5</span><div><strong>Publish the Meta app to Live</strong> — in dev mode only your own tester can interact, which is useless for a marketing automation. Expect App Review for <code>instagram_manage_messages</code>; budget a week of back-and-forth. Having a live account with real posts and real engagement at review time makes the case much easier — another reason to hold until content exists.</div></div>
+<div class="step"><span class="n">6</span><div><strong>Campaign 1, ready to paste once it runs:</strong> keyword <code>SPRINT</code>; CTA in every caption + on-screen text ("comment SPRINT and I'll DM you the 3 hook scripts"); DM body is verbatim in the runbook — free-script link first, `$297` slot mention second, AI-disclosure on any DM carrying synthetic media, one UTM-tagged link per DM (<code>utm_source=instagram&amp;utm_medium=dm&amp;utm_campaign=hook_scripts</code>). Campaign 2 (keyword <code>PRICE</code>) only after campaign 1 has data.</div></div>
+<div class="step"><span class="n">7</span><div><strong>Verify</strong> from a different Instagram account: comment <code>TEST</code> on a post → DM should land within seconds; check the worker log and dashboard DM log.</div></div>
+
+<div class="good"><strong>Done when:</strong> the DM campaign's keyword name matches the CTA copy, the test DM fires from a secondary account, and the link in it resolves to the free-hooks section with UTMs attached.</div>
+
+<h2>Order of operations</h2>
+<p>If you only have one focused hour: <strong>Option B privatize → push (task 1)</strong>, then the <strong>IG bio link (task 4)</strong> on your phone, then the <strong>X thread (task 3)</strong> if it's Tue–Thu morning ET, then <strong>Reddit rules read (task 2, step 0)</strong> and post when the rules check passes. Tasks 5–7 stack on top whenever you get to them — but at least start the Plausible/GA4 signup in task 5 before the first posts go live, or week one's channel data is lost.</p>
+
+<footer>Next-Steps Playbook · 2026-10-11 · UGC Sprint · source of truth: growth-os/ · agents cannot execute any of these tasks; every post requires your per-batch approval</footer>
+</body>
+</html>

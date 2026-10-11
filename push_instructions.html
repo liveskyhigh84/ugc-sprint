@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Push & Deployment Instructions — UGC Sprint</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.5; max-width: 960px; margin: 0 auto; padding: 2rem; background: #100E0D; color: #F3ECDF; }
+    h1 { color: #FF3B30; }
+    h2 { margin-top: 2rem; border-bottom: 1px solid rgba(243,236,223,0.14); padding-bottom: 0.5rem; }
+    code { background: #211D19; padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; }
+    pre { background: #211D19; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+    .warning { background: rgba(255,59,48,0.1); border-left: 4px solid #FF3B30; padding: 1rem; margin: 1rem 0; }
+    .step { margin: 1rem 0; }
+    .step-number { display: inline-block; background: #FF3B30; color: #100E0D; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-weight: bold; margin-right: 0.5rem; }
+    .done { color: #3ED07A; }
+  </style>
+</head>
+<body>
+  <h1>Push & Deployment Instructions</h1>
+  <p>These instructions cover pushing the committed changes to GitHub and completing the remaining manual setup steps.</p>
+  
+  <h2>Status Summary</h2>
+  <p>All systems are ready. The commit <code>8dc3d94</code> is staged and ready to push. Paperclip agents and routines are configured and active.</p>
+  
+  <div class="warning">
+    <strong>IMPORTANT:</strong> Pushing will make the following internal files publicly readable at <code>https://liveskyhigh84.github.io/ugc-sprint/&lt;path&gt;</code>:
+    <ul>
+      <li><code>memory.md</code> (project memory — contains Stripe dashboard reference, @LeverageAcad mention, no credentials)</li>
+      <li><code>growth-os/outbound-engine/fb_ad_library_batch_verified.md</code> (FB prospect list — brand names + ad critiques)</li>
+      <li><code>growth-os/outbound-engine/fb_ad_library_batch_2026-10-10.md</code> (same)</li>
+      <li><code>marketing/ready_to_post/final_copy.md</code> (ready-to-send DM templates + tweet copy)</li>
+      <li><code>marketing/outbound_scripts.md</code> (same)</li>
+      <li><code>marketing/ready_to_post/go_no_go_checklist.md</code> (pre-flight checklist)</li>
+      <li><code>research/ugc_mastery_notes.md</code> (competitor research, sourced)</li>
+      <li><code>research/tape001_package.json</code> (Tape 001 metadata)</li>
+      <li><code>growth-os/customer-truth/what_the_market_is_telling_us.md</code> (market research)</li>
+    </ul>
+    <p>If you want to keep any of these private, see <strong>Option B</strong> below before pushing.</p>
+  </div>
+  
+  <h2>Step 1: Review What Will Be Public</h2>
+  <p>Before pushing, review the full list of tracked files that will be publicly accessible:</p>
+  <pre>
+cd ~/Developer/UGC_Sprint
+git ls-files
+</pre>
+  <p>This shows all 25 files that will be publicly readable after push. The landing page itself (<code>index.html</code>, <code>brief.html</code>, <code>privacy.html</code>, <code>terms.html</code>) plus media assets are intended to be public. The agent reference files are needed by Paperclip agents to operate.</p>
+  
+  <h2>Step 2: Push (if you accept the public surface)</h2>
+  <div class="step">
+    <span class="step-number">1</span>
+    <code>cd ~/Developer/UGC_Sprint</code>
+  </div>
+  <div class="step">
+    <span class="step-number">2</span>
+    <code>git push origin master</code>
+  </div>
+  <p>This will push commit <code>8dc3d94</code> to GitHub and trigger GitHub Pages to rebuild the site with the new commit. Pages typically rebuilds within 60 seconds.</p>
+  
+  <h2>Option B: Keep Internal Files Private</h2>
+  <p>If you want to push the site updates but keep the internal agent reference files private, do this BEFORE pushing:</p>
+  <div class="step">
+    <span class="step-number">1</span>
+    <p>Remove the internal files from the git index (they stay on disk, just not tracked):</p>
+    <pre>
+cd ~/Developer/UGC_Sprint
+git rm --cached memory.md
+git rm --cached growth-os/outbound-engine/fb_ad_library_batch_verified.md
+git rm --cached growth-os/outbound-engine/fb_ad_library_batch_2026-10-10.md
+git rm --cached marketing/ready_to_post/final_copy.md
+git rm --cached marketing/outbound_scripts.md
+git rm --cached marketing/outbound_scripts_clean.md
+git rm --cached marketing/ready_to_post/go_no_go_checklist.md
+git rm --cached research/ugc_mastery_notes.md
+git rm --cached research/tape001_package.json
+git rm --cached growth-os/customer-truth/what_the_market_is_telling_us.md
+    </pre>
+  </div>
+  <div class="step">
+    <span class="step-number">2</span>
+    <p>Commit the removal:</p>
+    <pre>
+git commit -m "privatize internal docs — keep only landing page + media public"
+    </pre>
+  </div>
+  <div class="step">
+    <span class="step-number">3</span>
+    <p>Verify the public surface is now just the site files:</p>
+    <pre>
+git ls-files
+    </pre>
+    <p>Should show only: <code>.gitignore</code>, <code>assets/</code>, <code>brief.html</code>, <code>generate-out/tape001-final.mp4</code>, <code>index.html</code>, <code>privacy.html</code>, <code>terms.html</code></p>
+  </div>
+  <div class="step">
+    <span class="step-number">4</span>
+    <p>Push:</p>
+    <pre>
+git push origin master
+    </pre>
+  </div>
+  
+  <h2>Step 3: Verify the Live Site After Push</h2>
+  <div class="step">
+    <span class="step-number">1</span>
+    <p>Wait for GitHub Pages to rebuild (typically 60 seconds). Check the commit status at:</p>
+    <p><code>https://github.com/liveskyhigh84/ugc-sprint/commits/master</code></p>
+  </div>
+  <div class="step">
+    <span class="step-number">2</span>
+    <p>Verify the site is live at:</p>
+    <p><code>https://liveskyhigh84.github.io/ugc-sprint/</code></p>
+  </div>
+  <div class="step">
+    <span class="step-number">3</span>
+    <p>Check that the 4 alt variants are visible on the page (they should appear in the "TAPE 001 · B–E" section)</p>
+  </div>
+  <div class="step">
+    <span class="step-number">4</span>
+    <p>Verify the Stripe checkout link works:</p>
+    <p><code>https://buy.stripe.com/3cI9AUenj4F5aWvbul5os00</code></p>
+  </div>
+  
+  <h2>Remaining Manual Steps (Leon-only)</h2>
+  
+  <h3>3.1 Post the Reddit Launch</h3>
+  <div class="step">
+    <span class="step-number">1</span>
+    <p>Re-read the current rules for r/SideProject and r/EntrepreneurRideAlong:</p>
+    <p><code>https://www.reddit.com/r/SideProject/</code></p>
+    <p><code>https://www.reddit.com/r/EntrepreneurRideAlong/</code></p>
+    <p><strong>Note:</strong> Reddit blocks automated fetching in this environment, so you must read these manually in your browser.</p>
+  </div>
+  <div class="step">
+    <span class="step-number">2</span>
+    <p>Copy the ready-to-post Reddit copy from:</p>
+    <p><code>~/Developer/UGC_Sprint/marketing/ready_to_post/final_copy.md</code></p>
+    <p>Section: "## 1 · Reddit post — r/SideProject (primary) / r/EntrepreneurRideAlong (staggered, different angle)"</p>
+  </div>
+  <div class="step">
+    <span class="step-number">3</span>
+    <p>Post to r/SideProject first (title: "I shipped a $297 one-time UGC ad slot that runs in 24-48h. Built the avatar pipeline with SadTalker + gTTS, free tier. AMA / roast my landing page.")</p>
+  </div>
+  <div class="step">
+    <span class="step-number">4</span>
+    <p>Wait a few hours, then post to r/EntrepreneurRideAlong with a different angle/title (story/AMA format, not direct launch pitch)</p>
+  </div>
+  <div class="step">
+    <span class="step-number">5</span>
+    <p>Log the post to <code>~/Developer/UGC_Sprint/growth-os/outbound-engine/feedback-log.md</code> under the "Outbound" section</p>
+  </div>
+  
+  <h3>3.2 Post the X/Twitter Thread</h3>
+  <div class="step">
+    <span class="step-number">1</span>
+    <p>Log into <code>@ugcsprint</code> on X (NOT @LeverageAcad — that's a different business's account)</p>
+  </div>
+  <div class="step">
+    <span class="step-number">2</span>
+    <p>Copy the 7-tweet thread from:</p>
+    <p><code>~/Developer/UGC_Sprint/marketing/ready_to_post/final_copy.md</code></p>
+    <p>Section: "## 3 · X / Twitter build-in-public thread (7 tweets, @ugcsprint only)"</p>
+  </div>
+  <div class="step">
+    <span class="step-number">3</span>
+    <p>Post the thread Tue-Thu 9-11am ET (best window per the X research in <code>growth-os/content-engine/social_strategy.md</code>)</p>
+  </div>
+  
+  <h3>3.3 Set Up Instagram Bio Link</h3>
+  <div class="step">
+    <span class="step-number">1</span>
+    <p>Open the Instagram mobile app (bio link editing is ONLY available on mobile — Meta blocks it on desktop web)</p>
+  </div>
+  <div class="step">
+    <span class="step-number">2</span>
+    <p>Go to @ugcsprint → Settings → Edit Profile</p>
+  </div>
+  <div class="step">
+    <span class="step-number">3</span>
+    <p>Set Website to: <code>https://liveskyhigh84.github.io/ugc-sprint/</code></p>
+  </div>
+  <div class="step">
+    <span class="step-number">4</span>
+    <p>Add the AI disclosure toggle if available (Settings → Account → AI-generated content, if present)</p>
+  </div>
+  
+  <h3>3.4 Install Analytics (Recommended)</h3>
+  <p>The site currently has no analytics installed. UTM tags land nowhere until you add this. Recommended options:</p>
+  <ul>
+    <li><strong>Google Analytics 4</strong> — free, industry standard. Add the GA4 measurement ID to <code>index.html</code>'s <code>&lt;head&gt;</code>.</li>
+    <li><strong>Plausible</strong> — privacy-friendly, lightweight. <code>https://plausible.io</code> — $9/mo after trial.</li>
+    <li><strong>Vercel Analytics</strong> — free tier available, but requires moving hosting to Vercel (not applicable if staying on GitHub Pages).</li>
+  </ul>
+  <p>After installing, UTM tags will start attributing traffic to specific channels.</p>
+  
+  <h3>3.5 Create Sprint Pass Payment Link (Optional)</h3>
+  <div class="step">
+    <span class="step-number">1</span>
+    <p>Log into <code>https://dashboard.stripe.com/</code> (Leon's account)</p>
+  </div>
+  <div class="step">
+    <span class="step-number">2</span>
+    <p>Go to Products → Add product → Name: "Sprint Pass — Monthly Hook Refresh", Price: $197, Recurring: monthly</p>
+  </div>
+  <div class="step">
+    <span class="step-number">3</span>
+    <p>Create payment link, copy the URL (will be <code>buy.stripe.com/live_...</code>)</p>
+  </div>
+  <div class="step">
+    <span class="step-number">4</span>
+    <p>Add a second CTA to <code>index.html</code> (optional — pitched post-delivery, not at checkout). Or just keep the link ready to send manually to existing customers when their hooks fatigue (day 10-14).</p>
+  </div>
+  
+  <h3>3.6 Set Up OpenReply Comment-to-DM (Optional, After Content Is Posting)</h3>
+  <p><strong>Do NOT set this up before you have content generating comments.</strong> With zero posts, it converts nothing. The runbook is ready at:</p>
+  <p><code>~/Developer/UGC_Sprint/growth-os/content-engine/openreply-runbook.md</code></p>
+  <p>Summary of what's needed:</p>
+  <ol>
+    <li>Instagram Business/Creator account (@ugcsprint — already created)</li>
+    <li>Meta app (developers.facebook.com → Business app → Instagram product)</li>
+    <li>App Review for Instagram messaging permissions</li>
+    <li>Railway account (~$5/mo Hobby plan for Postgres + Redis + worker)</li>
+    <li>Vercel account (free tier for the web app)</li>
+    <li>Resend account (free, for magic-link login)</li>
+    <li>Set <code>ENCRYPTION_KEY</code> (64 hex chars: <code>openssl rand -hex 32</code>) — same on web app and worker</li>
+    <li>Set <code>ALLOWED_EMAILS</code> to your email</li>
+  </ol>
+  <p>Full setup instructions in the runbook. This is a conversion layer, not a growth source — set it up after you have posts generating comments.</p>
+  
+  <h2>Paperclip Agents — What's Configured</h2>
+  <p>The following Paperclip agents and routines are set up and active in your local Paperclip instance:</p>
+  
+  <h3>Agents (all idle, heartbeat enabled for 3)</h3>
+  <ul>
+    <li><strong>UGC Sprint Ops</strong> — chief of staff, manages the team</li>
+    <li><strong>Distribution Lead</strong> — outbound + community posting (heartbeat enabled, reads from <code>~/Developer/UGC_Sprint/</code>)</li>
+    <li><strong>Social Media Manager</strong> — IG/TikTok/X content (heartbeat enabled, reads from <code>~/Developer/UGC_Sprint/</code>)</li>
+    <li><strong>Growth Scout</strong> — FB Ad Library prospecting (heartbeat enabled, reads from <code>~/Developer/UGC_Sprint/</code>)</li>
+    <li><strong>Brief Intake</strong> — client brief capture</li>
+    <li><strong>UGC Producer</strong> — creative production</li>
+    <li><strong>QC & Delivery</strong> — quality checks + delivery</li>
+    <li><strong>Sprint Digest</strong> — daily ops digest</li>
+  </ul>
+  
+  <h3>Routines (all active)</h3>
+  <ul>
+    <li><strong>Social content batch — IG/TikTok/X</strong> — Daily 9am PT (next run: today at 16:00 UTC / 9am PT)</li>
+    <li><strong>Weekly distribution content prep</strong> — Monday 9am PT (next run: Monday 16:00 UTC / 9am PT)</li>
+    <li><strong>Weekly FB Ad Library prospect refresh</strong> — Monday 9am PT (next run: Monday 16:00 UTC / 9am PT)</li>
+    <li><strong>Daily sprint digest</strong> — Daily 09:00 UTC</li>
+  </ul>
+  
+  <p><strong>Important:</strong> These agents read their instructions from the managed instruction bundles in Paperclip, which reference absolute paths to <code>~/Developer/UGC_Sprint/</code>. They do NOT post directly — every batch requires explicit board approval (you) before anything goes live. This is by design.</p>
+  
+  <h2>Files That Stay Local-Only (Not Public After Push)</h2>
+  <p>The following remain on disk but are NOT tracked in git, so they won't be publicly readable:</p>
+  <ul>
+    <li><code>scripts/</code> — fulfillment pipeline source (heygen_clone_server.py, etc.)</li>
+    <li><code>scripts/heygen_clone_venv/</code> — heavy Python venv, local-only</li>
+    <li><code>growth-os/agents/</code> — agent specs (read by Paperclip from managed bundles, not from the repo)</li>
+    <li><code>growth-os/content-engine/</code> — content engine docs (founder-voice.md, hook-library.md, etc. — already in the public tree)</li>
+    <li><code>growth-os/outbound-engine/pipeline.md</code>, <code>feedback-log.md</code> — operations docs</li>
+    <li>Any file matching a pattern in <code>.gitignore</code></li>
+  </ul>
+  
+  <h2>If Something Goes Wrong</h2>
+  <ul>
+    <li><strong>Push fails with authentication error:</strong> Your macOS keychain should have GitHub credentials cached. If not, run <code>git push</code> and it will prompt for credentials, or use a personal access token.</li>
+    <li><strong>GitHub Pages doesn't update after push:</strong> Check <code>https://github.com/liveskyhigh84/ugc-sprint/actions</code> for the Pages rebuild workflow. Sometimes it takes 2-3 minutes.</li>
+    <li><strong>Site shows old version after push:</strong> Hard-refresh your browser (Cmd+Shift+R) or check in an incognito window. GitHub Pages caches aggressively.</li>
+    <li><strong>Paperclip agents don't fire:</strong> Check that Paperclip is running (look for the Paperclip icon in your menu bar, or run <code>paperclipai doctor</code>). Check the logs at <code>~/.paperclip/instances/default/logs/service.log</code>.</li>
+  </ul>
+  
+  <p style="margin-top: 3rem; opacity: 0.7; font-size: 0.9rem;">
+    Created: 2026-10-11 · UGC Sprint · Push instructions
+  </p>
+</body>
+</html>

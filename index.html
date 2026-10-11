@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>24-Hour UGC Sprint — Your ad, shot and delivered in a day</title>
+<title>24-Hour UGC Sprint | Your ad, scripted, voiced and delivered in a day</title>
 <meta name="description" content="A real UGC-style ad video plus 4 alt creative variants to test, delivered in 24-48 hours. No creator contracts, no usage-rights hassle, no 2-week wait. $297 flat, first 5 orders today.">
 <link rel="canonical" href="https://liveskyhigh84.github.io/ugc-sprint/">
 <meta property="og:url" content="https://liveskyhigh84.github.io/ugc-sprint/">
@@ -214,6 +214,10 @@
     margin-bottom:10px; display:block;
   }
   .split .before .tag{ color:var(--ink-faint); }
+  .split .sourced{ list-style:none; margin:18px 0 0; padding:0; display:grid; gap:12px; }
+  .split .sourced li{ padding-top:12px; border-top:1px dashed var(--line); color:var(--ink-dim); font-size:.92rem; }
+  .split .sourced b{ color:var(--ink); }
+  .split .fine{ margin-top:16px; font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-faint); }
   .split .after .tag{ color:var(--ok); }
   .split p{ margin:0; color:var(--ink-dim); font-size:.96rem; }
   .fill-note{
@@ -374,6 +378,39 @@
     opacity:.65;
   }
   footer{ padding:28px 0 60px; text-align:center; color:var(--ink-faint); font-family:"IBM Plex Mono",monospace; font-size:12px; }
+
+  /* ---------- alt hook variants ---------- */
+  .variants-head{ display:flex; align-items:baseline; gap:14px; margin:36px 0 20px; }
+  .variants-head h3{ font-size:1.2rem; text-transform:none; letter-spacing:0; font-family:"Archivo",sans-serif; font-weight:700; }
+  .variants{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  @media (max-width:760px){ .variants{ grid-template-columns:repeat(2,1fr); } }
+  .variants figure{ margin:0; }
+  .variants video{ width:100%; display:block; border-radius:8px; background:#000; aspect-ratio:9/16; object-fit:cover; }
+  .variants figcaption{ margin-top:8px; font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); }
+
+  /* ---------- free hook scripts ---------- */
+  .hooks{ padding:80px 0; border-bottom:1px solid var(--line); }
+  .hooks h2{ font-size:clamp(1.7rem,3.6vw,2.3rem); margin-bottom:14px; }
+  .hooks .lede{ color:var(--ink-dim); max-width:62ch; margin:0 0 26px; }
+  .hook-form{ display:flex; flex-wrap:wrap; gap:12px; max-width:580px; }
+  .hook-form input{
+    flex:1 1 260px; min-width:0;
+    background:#0D0F12; color:var(--ink);
+    border:1px solid var(--line-strong); border-radius:8px;
+    padding:15px 16px; font:inherit; font-size:15px;
+  }
+  .hook-form input:focus{ outline:none; border-color:var(--rec); box-shadow:0 0 0 3px rgba(255,59,48,.18); }
+  .hook-form .btn-rec{ flex:0 0 auto; font-size:1rem; padding:15px 24px; }
+  .hooks .fine{ margin:14px 0 0; font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-faint); max-width:62ch; }
+  .hook-scripts{ display:none; margin-top:32px; }
+  .hook-scripts.on{ display:block; }
+  .hook-card{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px 24px; margin-bottom:14px; }
+  .hook-card .n{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--rec); }
+  .hook-card h3{ font-size:1.08rem; text-transform:none; letter-spacing:0; font-family:"Archivo",sans-serif; font-weight:700; margin:6px 0 10px; }
+  .hook-card pre{ margin:0 0 12px; white-space:pre-wrap; font-family:"IBM Plex Mono",monospace; font-size:13px; line-height:1.65; color:var(--ink-dim); }
+  .hook-card .why{ margin:0; font-size:.88rem; color:var(--ink-faint); }
+  .paid-link{ margin:16px 0 0; font-family:"IBM Plex Mono",monospace; font-size:12px; }
+  .paid-link a{ color:var(--ink-dim); text-decoration:underline; text-underline-offset:4px; text-decoration-color:var(--line-strong); }
 </style>
 </head>
 <body>
@@ -391,11 +428,11 @@
 <section class="slate">
   <div class="wrap">
     <span class="eyebrow-tag"><span class="rec-dot"></span> Now booking — Day 1</span>
-    <h1>Your ad.<br>Shot, edited,<br>delivered.<br><em>In 24 hours.</em></h1>
-    <p class="sub">A real UGC-style ad video plus 4 alternate hooks to test it against. No creator contracts, no usage-rights back-and-forth, no two-week wait. $297 flat, first 5 orders today.</p>
+    <h1>Your ad.<br>Scripted, voiced,<br>delivered.<br><em>In 24–48 hours.</em></h1>
+    <p class="sub">A real UGC-style ad video plus 4 alternate hooks to test it against. No creator contracts, no usage-rights back-and-forth, no two-week wait. $297 flat, first 5 orders.</p>
     <div class="cta-row">
       <a class="btn-rec" href="#order"><span class="dot"></span> Claim Your Spot — $297</a>
-      <a class="link-ghost" href="#free-tool">or get 3 free hook scripts first →</a>
+      <a class="link-ghost" href="#hooks">or get 3 free hook scripts first →</a>
     </div>
   </div>
 </section>
@@ -410,6 +447,12 @@
       <div class="before">
         <span class="tag">The usual quote</span>
         <p>Every creator marketplace we checked: 7-12 business days, $420 average, plus a creator-approval step before the ad can even run.</p>
+        <ul class="sourced">
+          <li><b>Billo</b> · $500–2,500 packages, 7–12 business days, creator approval required before you can run it as paid.</li>
+          <li><b>Arcads</b> · $110–220/mo subscription. A 15-second ad and a 58-second ad cost the same credits, so a bad render is real money gone.</li>
+          <li><b>Icon</b> · $999/mo for roughly 6 ads. Premium human-shot, not a price competitor in this shape.</li>
+        </ul>
+        <p class="fine">Sourced 2026, full citations in the research notes. Compare on the axes that cost you money: turnaround, lock-in, and rights friction.</p>
       </div>
       <div class="after">
         <span class="tag">The actual output</span>
@@ -421,28 +464,53 @@
         <p>Unedited. AI avatar, AI voice, generated end to end by the exact pipeline every order runs through. No hired actor, no stock footage.</p>
       </div>
     </div>
+
+    <div class="variants-head">
+      <span class="tape-label">TAPE 001 · B–E</span>
+      <h3>And the 4 alternate hooks that ship with it.</h3>
+    </div>
+    <div class="variants">
+      <figure>
+        <video controls playsinline preload="metadata" poster="assets/alt-variants/poster1.jpg" src="assets/alt-variants/variant1.mp4"></video>
+        <figcaption>Variant A</figcaption>
+      </figure>
+      <figure>
+        <video controls playsinline preload="metadata" poster="assets/alt-variants/poster2.jpg" src="assets/alt-variants/variant2.mp4"></video>
+        <figcaption>Variant B</figcaption>
+      </figure>
+      <figure>
+        <video controls playsinline preload="metadata" poster="assets/alt-variants/poster3.jpg" src="assets/alt-variants/variant3.mp4"></video>
+        <figcaption>Variant C</figcaption>
+      </figure>
+      <figure>
+        <video controls playsinline preload="metadata" poster="assets/alt-variants/poster4.jpg" src="assets/alt-variants/variant4.mp4"></video>
+        <figcaption>Variant D</figcaption>
+      </figure>
+    </div>
+    <p class="fill-note">All four are real pipeline output, cut as short ready-to-post clips. The hook text on screen is the only thing that changes between them. That's the variable worth testing.</p>
   </div>
 </section>
 
-<section class="offer" id="free-tool">
+<section class="offer" id="what-ships">
   <div class="wrap offer-grid">
     <div>
       <h2>What ships in 24-48hrs</h2>
       <ul class="move-list">
         <li><span class="ck">✓</span><div><b>1 talking UGC-style ad video</b><span class="d">Shot and voiced start to finish: the asset you actually run as your primary creative.</span></div></li>
-        <li><span class="ck">✓</span><div><b>4 alternate hook variants</b><span class="d">The hook is the only variable most ads ever test — you get 5 different ones on day one, static and short motion, instead of betting everything on a single guess.</span></div></li>
+        <li><span class="ck">✓</span><div><b>4 alternate hook variants</b><span class="d">The hook is the only variable most ads ever test. You get 5 different openings on day one, cut as short ready-to-post clips, instead of betting everything on a single guess.</span></div></li>
         <li><span class="ck">✓</span><div><b>Full usage rights, no contract</b><span class="d">You own every asset outright. No creator approval step, no whitelisting request, no waiting on someone else's schedule.</span></div></li>
         <li><span class="ck">✓</span><div><b>One free revision</b><span class="d">If the hook's wrong, one round of notes gets it fixed. Not a full re-shoot negotiation.</span></div></li>
-        <li><span class="ck">✓</span><div><b>Money-back if it doesn't beat what you're running</b><span class="d">Full refund, no argument, if it underperforms your current creative.</span></div></li>
+        <li><span class="ck">✓</span><div><b>Money-back if it doesn't beat what you're running</b><span class="d">Run it against your current control in a fair paid test. If it doesn't beat it, ask within 14 days and you get a full refund. Same terms in writing on the <a href="./terms.html" style="text-decoration:underline;text-underline-offset:3px;">Terms page</a>.</span></div></li>
       </ul>
     </div>
     <div class="order-card" id="order">
       <div class="kicker">24-Hour UGC Sprint</div>
       <div class="price-line"><span class="price">$297</span><span class="price-was mono">vs $500+ agency</span></div>
       <p class="caption">One-time. 5 finished assets. Delivered in 24-48 hours.</p>
-      <div class="spots"><span class="rec-dot"></span> Only 5 orders today, filmed and edited one at a time, by hand.</div>
+      <div class="spots"><span class="rec-dot"></span> Only 5 orders at a time. Each one is produced and checked before it ships.</div>
       <a class="btn-rec" href="https://buy.stripe.com/3cI9AUenj4F5aWvbul5os00"><span class="dot"></span> Claim Your Spot</a>
-      <div class="guarantee"><span class="g-ico">✓</span> Doesn't beat your current ad? Full refund, no questions.</div>
+      <div class="guarantee"><span class="g-ico">✓</span> Doesn't beat your control in a fair paid test? Full refund within 14 days, same terms as the <a href="./terms.html" style="text-decoration:underline;text-underline-offset:3px;">Terms page</a>.</div>
+      <p class="paid-link">Already ordered? <a href="./brief.html">Submit your brief →</a></p>
     </div>
   </div>
 </section>
@@ -468,9 +536,44 @@
   <div class="wrap">
     <h2>How it actually works</h2>
     <div class="step-grid">
-      <div><div class="step-n mono">01</div><h3>5-minute brief</h3><p>Tell me your product, audience, and the one thing that sells it. No call, no back-and-forth. Just the form.</p></div>
+      <div><div class="step-n mono">01</div><h3>3-question brief</h3><p>Right after checkout you get the <a href="./brief.html" style="text-decoration:underline;text-underline-offset:3px;">brief form</a>: product, audience, and the one thing that sells it. No call, no back-and-forth.</p></div>
       <div><div class="step-n mono">02</div><h3>We shoot &amp; cut</h3><p>Your talking-avatar ad plus 4 alt-hook variants get produced within the window. You're not waiting on a creator's calendar.</p></div>
       <div><div class="step-n mono">03</div><h3>You run it</h3><p>Five finished assets land in your inbox, fully yours to run. Pick the winner by testing, not guessing.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="hooks" id="hooks">
+  <div class="wrap">
+    <h2>3 hook scripts. Free, no call.</h2>
+    <p class="lede">71% of viewers decide scroll-or-watch inside 3 seconds. The hook is the whole ad, and most of what people test is the one thing that never changes. Three complete opening hooks below, built on the structure that holds up in 2026: stop the scroll → name the pain → product as the fix.</p>
+    <form class="hook-form" id="hookForm" onsubmit="return showHooks(event)">
+      <input id="hookEmail" type="email" required placeholder="you@brand.com" autocomplete="email" aria-label="Your email">
+      <button class="btn-rec" type="submit"><span class="dot"></span> Show me the 3 scripts</button>
+    </form>
+    <p class="fine">Opens right here, no email wall. I'll also email you the copy-paste version if you send it. One email, never sold, unsubscribe whenever.</p>
+
+    <div class="hook-scripts" id="hookScripts">
+      <div class="hook-card">
+        <span class="n">Hook 01 · objection first</span>
+        <h3>Kill the reason they haven't bought yet</h3>
+        <pre>[What they already tried] didn't work because [the specific reason].
+This does [the specific mechanism] instead.</pre>
+        <p class="why">"Every cleanser I tried was stripping my skin, not the makeup. This one dissolves it first." Leads with the viewer's existing failure, so it reads as advice rather than an ad. Name the product at 8s, not 2s.</p>
+      </div>
+      <div class="hook-card">
+        <span class="n">Hook 02 · cost or time</span>
+        <h3>Put a real number in the first 3 seconds</h3>
+        <pre>Stop paying [$/mo] for [category] that still takes [N] days.</pre>
+        <p class="why">"Stop paying $110/mo for a UGC tool that still takes 9 days." A specific number reads as evidence; "expensive and slow" reads as ad copy. This is the hook running in Variant B up the page.</p>
+      </div>
+      <div class="hook-card">
+        <span class="n">Hook 03 · one specific result</span>
+        <h3>Specificity is what makes it believable</h3>
+        <pre>[Specific result] in [specific timeframe]. Here's the exact [thing] I used.</pre>
+        <p class="why">"Cleared my acne in six weeks. Here's the exact routine." Only use this one with a result you can actually stand behind. On TikTok it's also a platform rule: synthetic avatars can't make experience-based testimonial claims.</p>
+      </div>
+      <p class="paid-link">Want all of this produced instead? <a href="#order">The Sprint ships the video + 4 more hooks, $297 flat →</a></p>
     </div>
   </div>
 </section>
@@ -532,6 +635,7 @@
     <div style="display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;justify-content:center;margin-top:10px;font-family:IBM Plex Mono,monospace;font-size:11.5px;">
       <a href="./privacy.html" style="color:inherit;opacity:.85;">Privacy</a>
       <a href="./terms.html" style="color:inherit;opacity:.85;">Terms &amp; Refund</a>
+      <a href="./brief.html" style="color:inherit;opacity:.85;">Order brief</a>
       <a href="mailto:jskywalker72@proton.me" style="color:inherit;opacity:.85;">Contact</a>
     </div>
     <div style="margin-top:14px;opacity:.6;">UGC SPRINT · CH 24 · END OF TRANSMISSION · © 2026</div>
@@ -547,6 +651,18 @@
   }
   tick();
   setInterval(tick, 1000);
+
+  function showHooks(e){
+    e.preventDefault();
+    var email = document.getElementById("hookEmail").value.trim();
+    if(!email){ return false; }
+    document.getElementById("hookScripts").classList.add("on");
+    document.getElementById("hookEmail").value = "";
+    var subject = "UGC Sprint — send me the 3 hook scripts";
+    var body = "Send the copy-paste version to: " + email;
+    window.location.href = "mailto:jskywalker72@proton.me?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    return false;
+  }
 </script>
 
 </body>
