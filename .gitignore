@@ -43,6 +43,10 @@ GEMINI.md
 # The fulfillment pipeline source is internal too.
 scripts/
 
+# Leverage Studio: local-only tool. Holds generated presenter media, voice
+# audio, logs, and internal strategy notes. Never publish.
+studio/
+
 # Build artifacts. generate-out/tape001-final.mp4 stays tracked on purpose —
 # the landing page embeds it. It is already-tracked, so this ignore rule does
 # not affect it; don't `git add -A` this tree without checking.
