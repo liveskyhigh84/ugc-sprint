@@ -15,6 +15,8 @@ ugc-launch-checklist.html
 three-video-toolkit.html
 next_steps_playbook.html
 push_instructions.html
+video_engine_decision.html
+next_steps_video_engine.html
 HOU-*
 
 # Superseded docs, kept for audit. STATUS.md is the live source of truth.
@@ -56,3 +58,4 @@ BUSINESS_PROCESS.html
 # the landing page embeds it. It is already-tracked, so this ignore rule does
 # not affect it; don't `git add -A` this tree without checking.
 generate-out/
+voice_and_social_setup.html
